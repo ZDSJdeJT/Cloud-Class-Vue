@@ -4,7 +4,7 @@
             <span class="hipster img-fluid rounded"></span>
         </div>
         <div class="col-md-9">
-            <h1 class="display-4" v-text="$t('home.title')">Welcome, Java Hipster!</h1>
+            <h1 class="display-4" v-text="$t('home.title')">Welcome, The user of Cloud Class!</h1>
             <p class="lead" v-text="$t('home.subtitle')">This is your homepage</p>
 
             <div>
@@ -16,13 +16,13 @@
                     <span v-text="$t('global.messages.info.authenticated.prefix')">If you want to </span>
                     <a class="alert-link" v-on:click="openLogin()" v-text="$t('global.messages.info.authenticated.link')">sign in</a><span v-html="$t('global.messages.info.authenticated.suffix')">, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").</span>
                 </div>
-                <div class="alert alert-warning" v-if="!authenticated">
+<!--                <div class="alert alert-warning" v-if="!authenticated">
                     <span v-text="$t('global.messages.info.register.noaccount')">You don't have an account yet?</span>&nbsp;
                     <router-link class="alert-link" to="/register" v-text="$t('global.messages.info.register.link')">Register a new account</router-link>
-                </div>
+                </div> -->
             </div>
 
-            <p v-text="$t('home.question')">
+<!--            <p v-text="$t('home.question')">
                 If you have any question on JHipster:
             </p>
 
@@ -32,10 +32,10 @@
                 <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener" v-text="$t('home.link.bugtracker')">JHipster bug tracker</a></li>
                 <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener" v-text="$t('home.link.chat')">JHipster public chat room</a></li>
                 <li><a href="https://twitter.com/jhipster" target="_blank" rel="noopener" v-text="$t('home.link.follow')">follow @jhipster on Twitter</a></li>
-            </ul>
+            </ul> -->
 
             <p>
-                <span v-text="$t('home.like')">If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener" v-text="$t('home.github')">GitHub</a>!
+                <span v-text="$t('home.like')">If you like 'Cloud Class', don't forget to give us a star on</span> <a href="https://github.com/ZDSJdeJT/Cloud-Class-Vue" target="_blank" rel="noopener" v-text="$t('home.github.front-end')">前端GitHub</a><a>、</a><a href="https://github.com/ZDSJdeJT/Cloud-Class-Jhipster" target="_blank" rel="noopener" v-text="$t('home.github.back-end')">后端GitHub</a>!
             </p>
         </div>
     </div>

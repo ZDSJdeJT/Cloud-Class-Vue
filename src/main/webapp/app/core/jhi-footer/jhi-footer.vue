@@ -1,6 +1,6 @@
 <template>
     <div id="footer" class="footer">
-        <p v-text="$t('footer')">This is your footer</p>
+        <p class="footer-text" v-text="$t('footer')">云班级开发组</p>
     </div>
 </template>
 
@@ -9,6 +9,9 @@
 
 <style scoped>
     .footer {
-        text-align: left;
+        text-align: center;
+    }
+    .footer-text {
+        padding: 0.625rem;
     }
 </style>

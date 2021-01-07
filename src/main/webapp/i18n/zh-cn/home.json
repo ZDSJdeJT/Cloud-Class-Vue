@@ -1,6 +1,6 @@
 {
   "home": {
-    "title": "欢迎, Java Hipster!",
+    "title": "欢迎, 云班级的用户!",
     "subtitle": "这里是首页",
     "logged": {
       "message": "您目前是以 \"{{username}}\" 账号登录."
@@ -13,7 +13,10 @@
       "chat": "JHipster public chat room",
       "follow": "在 Twitter 上联络 @jhipster"
     },
-    "like": "如果您喜欢 JHipster, 请记得给我们加星在",
-    "github": "GitHub"
+    "like": "如果您喜欢“云班级”, 请记得给我们加星在",
+    "github": {
+      "front-end": "前端github",
+      "back-end": "后端github"
+    }
   }
 }

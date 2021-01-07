@@ -50,7 +50,7 @@
         "authenticated": {
           "prefix": "",
           "link": "認証",
-          "suffix": "を試したければ, デフォルトアカウント:<br/>- 管理者 (ユーザー名=\"admin\", パスワード=\"admin\") <br/>- ユーザー (login=\"user\", password=\"user\")."
+          "suffix": "，未登録の場合は、デフォルトのアカウントが使えます:<br/>- アカウント=学籍番号;標準パスワード='123456'."
         },
         "register": {
           "noaccount": "アカウントをまだお持ちでないですか?",
@@ -135,5 +135,5 @@
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": "フッターです"
+  "footer": "雲クラス開発チーム（張思涵、王明泰、呉政令、劉衆）"
 }

@@ -48,9 +48,9 @@
     "messages": {
       "info": {
         "authenticated": {
-          "prefix": "If you want to ",
+          "prefix": "Click here ",
           "link": "sign in",
-          "suffix": ", you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\")."
+          "suffix": ", if you have never logged in, you can use the default account:<br/>- Account number = your student number; default password ='123456'."
         },
         "register": {
           "noaccount": "You don't have an account yet?",
@@ -136,5 +136,5 @@
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": "This is your footer"
+  "footer": "Cloud Class development group (Zhang Sihan, Wang Mingtai, Wu Zhengling, Liu Zhong)"
 }

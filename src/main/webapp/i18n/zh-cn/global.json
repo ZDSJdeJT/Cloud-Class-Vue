@@ -48,9 +48,9 @@
     "messages": {
       "info": {
         "authenticated": {
-          "prefix": "如果您要",
+          "prefix": "点击此处",
           "link": "登录",
-          "suffix": ", 您可以使用默认账号:<br/>- 管理员 (账号=\"admin\"和密码=\"admin\") <br/>- 普通用户 (账号=\"user\"和密码=\"user\")."
+          "suffix": "， 若您从未登录，可以使用默认账号:<br/>- 账号=您的学号；默认密码='123456'。"
         },
         "register": {
           "noaccount": "您还没有账号",
@@ -135,5 +135,5 @@
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": "这里是页脚"
+  "footer": "云班级开发组（张思涵、王明泰、吴政令、刘众）"
 }
