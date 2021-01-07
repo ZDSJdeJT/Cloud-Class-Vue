@@ -1,6 +1,6 @@
 {
   "global": {
-    "title": "CloudClass",
+    "title": "云班级",
     "browsehappy": "您目前使用<strong>过于老旧</strong>的浏览器, 建议您<a href=\"http://browsehappy.com/?locale=en\">升级浏览器</a>让您有更佳的上网体验.",
     "menu": {
       "home": "首页",
@@ -50,7 +50,7 @@
         "authenticated": {
           "prefix": "点击此处",
           "link": "登录",
-          "suffix": "， 若您从未登录，可以使用默认账号:<br/>- 账号=您的学号；默认密码='123456'。"
+          "suffix": "， 若您从未登录，可以使用默认账号:<br/>- 账号=您的学号；默认密码=123456。"
         },
         "register": {
           "noaccount": "您还没有账号",

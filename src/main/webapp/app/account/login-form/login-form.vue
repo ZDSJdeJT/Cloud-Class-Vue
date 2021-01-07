@@ -19,9 +19,9 @@
                     <b-form-checkbox id="rememberMe" name="rememberMe" v-model="rememberMe" checked >
                       <span v-text="$t('login.form.rememberme')">Remember me</span>
                     </b-form-checkbox>
-                    <div>
-                        <b-button type="submit" variant="primary" v-text="$t('login.form.button')">Sign in</b-button>
-                    </div>
+                    <center><div>
+                        <b-button type="submit" variant="primary" v-text="$t('login.form.button')" style="width: 25%;">Sign in</b-button>
+                    </div></center>
                 </b-form>
                 <p></p>
                 <div>
@@ -29,12 +29,12 @@
                         <b-link :to="'/account/reset/request'" class="alert-link" v-text="$t('login.password.forgot')">Did you forget your password?</b-link>
                     </b-alert>
                 </div>
-                <div>
+<!--                <div>
                     <b-alert show variant="warning">
                       <span v-text="$t('global.messages.info.register.noaccount')">You don't have an account yet?</span>
                       <b-link :to="'/register'" class="alert-link" v-text="$t('global.messages.info.register.link')">Register a new account</b-link>
                     </b-alert>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

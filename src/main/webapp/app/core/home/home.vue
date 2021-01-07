@@ -13,8 +13,8 @@
                 </div>
 
                 <div class="alert alert-warning" v-if="!authenticated">
-                    <span v-text="$t('global.messages.info.authenticated.prefix')">If you want to </span>
-                    <a class="alert-link" v-on:click="openLogin()" v-text="$t('global.messages.info.authenticated.link')">sign in</a><span v-html="$t('global.messages.info.authenticated.suffix')">, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").</span>
+                    <span v-text="$t('global.messages.info.authenticated.prefix')">Click here </span>
+                    <a class="alert-link" v-on:click="openLogin()" v-text="$t('global.messages.info.authenticated.link')">sign in</a><span v-html="$t('global.messages.info.authenticated.suffix')">, if you have never logged in, you can use the default account:<br/>- Account number = your student number; default password ='123456'.</span>
                 </div>
 <!--                <div class="alert alert-warning" v-if="!authenticated">
                     <span v-text="$t('global.messages.info.register.noaccount')">You don't have an account yet?</span>&nbsp;

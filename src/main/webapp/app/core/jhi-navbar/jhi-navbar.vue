@@ -2,19 +2,19 @@
     <b-navbar toggleable="md" type="dark" class="jh-navbar">
         <b-navbar-brand class="logo" b-link to="/">
             <span class="logo-img"></span>
-            <span v-text="$t('global.title')" class="navbar-title">CloudClass</span> <span class="navbar-version">{{version}}</span>
-        </b-navbar-brand>      
-        <b-navbar-toggle 
-        right 
-        class="jh-navbar-toggler d-lg-none" 
-        href="javascript:void(0);"  
-        data-toggle="collapse" 
-        target="header-tabs" 
-        aria-expanded="false" 
+            <span v-text="$t('global.title')" class="navbar-title">Cloud Class</span> <span class="navbar-version">{{version}}</span>
+        </b-navbar-brand>
+        <b-navbar-toggle
+        right
+        class="jh-navbar-toggler d-lg-none"
+        href="javascript:void(0);"
+        data-toggle="collapse"
+        target="header-tabs"
+        aria-expanded="false"
         aria-label="Toggle navigation">
             <font-awesome-icon icon="bars" />
         </b-navbar-toggle>
-           
+
         <b-collapse is-nav id="header-tabs">
             <b-navbar-nav class="ml-auto">
                 <b-nav-item to="/" exact>
@@ -23,7 +23,7 @@
                         <span v-text="$t('global.menu.home')">Home</span>
                     </span>
                 </b-nav-item>
-                <b-nav-item-dropdown
+<!--                <b-nav-item-dropdown
                     right
                     id="entity-menu"
                     v-if="authenticated"
@@ -31,9 +31,9 @@
                     <span slot="button-content" class="navbar-dropdown-menu">
                         <font-awesome-icon icon="th-list" />
                         <span v-text="$t('global.menu.entities.main')">Entities</span>
-                    </span>
+                    </span> -->
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
-                </b-nav-item-dropdown>
+<!--                </b-nav-item-dropdown> -->
                 <b-nav-item-dropdown
                     right
                     id="admin-menu"
@@ -45,15 +45,11 @@
                         <font-awesome-icon icon="cogs" />
                         <span v-text="$t('global.menu.admin.main')">Administration</span>
                     </span>
-                    <b-dropdown-item to="/admin/user-management" active-class="active">
-                        <font-awesome-icon icon="user" />
-                        <span v-text="$t('global.menu.admin.userManagement')">User management</span>
-                    </b-dropdown-item>
                     <b-dropdown-item  to="/admin/jhi-metrics" active-class="active">
                         <font-awesome-icon icon="tachometer-alt" />
                         <span v-text="$t('global.menu.admin.metrics')">Metrics</span>
                     </b-dropdown-item>
-                    <b-dropdown-item to="/admin/jhi-health" active-class="active">
+                  <b-dropdown-item to="/admin/jhi-health" active-class="active">
                         <font-awesome-icon icon="heart" />
                         <span v-text="$t('global.menu.admin.health')">Health</span>
                     </b-dropdown-item>
@@ -72,6 +68,10 @@
                     <b-dropdown-item v-if="swaggerEnabled"  to="/admin/docs" active-class="active">
                         <font-awesome-icon icon="book" />
                         <span v-text="$t('global.menu.admin.apidocs')">API</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/admin/user-management" active-class="active">
+                        <font-awesome-icon icon="user" />
+                        <span v-text="$t('global.menu.admin.userManagement')">User management</span>
                     </b-dropdown-item>
                 </b-nav-item-dropdown>
                 <b-nav-item-dropdown id="languagesnavBarDropdown" right v-if="languages && Object.keys(languages).length > 1">
@@ -113,10 +113,10 @@
                         <font-awesome-icon icon="sign-in-alt" />
                         <span v-text="$t('global.menu.account.login')">Sign in</span>
                     </b-dropdown-item>
-                    <b-dropdown-item to="/register" tag="b-dropdown-item" id="register" v-if="!authenticated" active-class="active">
+<!--                    <b-dropdown-item to="/register" tag="b-dropdown-item" id="register" v-if="!authenticated" active-class="active">
                         <font-awesome-icon icon="user-plus" />
                         <span v-text="$t('global.menu.account.register')">Register</span>
-                    </b-dropdown-item>
+                    </b-dropdown-item> -->
                 </b-nav-item-dropdown>
             </b-navbar-nav>
         </b-collapse>

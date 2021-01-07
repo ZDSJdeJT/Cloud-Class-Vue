@@ -1,6 +1,6 @@
 {
   "global": {
-    "title": "CloudClass",
+    "title": "雲クラス",
     "browsehappy": "<strong>古い</strong>ブラウザーが使われています。より良い体験を得るために<a href=\"http://browsehappy.com/?locale=en\">ブラウザをアップデート</a>してください。",
     "menu": {
       "home": "ホーム",
@@ -50,7 +50,7 @@
         "authenticated": {
           "prefix": "",
           "link": "認証",
-          "suffix": "，未登録の場合は、デフォルトのアカウントが使えます:<br/>- アカウント=学籍番号;標準パスワード='123456'."
+          "suffix": "，未登録の場合は、デフォルトのアカウントが使えます:<br/>- アカウント=学籍番号;標準パスワード=123456."
         },
         "register": {
           "noaccount": "アカウントをまだお持ちでないですか?",

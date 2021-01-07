@@ -1,6 +1,6 @@
 {
   "global": {
-    "title": "CloudClass",
+    "title": "Cloud Class",
     "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
     "menu": {
       "home": "Home",
@@ -50,7 +50,7 @@
         "authenticated": {
           "prefix": "Click here ",
           "link": "sign in",
-          "suffix": ", if you have never logged in, you can use the default account:<br/>- Account number = your student number; default password ='123456'."
+          "suffix": ", if you have never logged in, you can use the default account:<br/>- Account number = your student number; default password =123456."
         },
         "register": {
           "noaccount": "You don't have an account yet?",
