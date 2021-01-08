@@ -17,7 +17,7 @@
                         </b-form-input>
                     </b-form-group>
                     <b-form-checkbox id="rememberMe" name="rememberMe" v-model="rememberMe" checked >
-                      <span v-text="$t('login.form.rememberme')">Remember me</span>
+                        <span v-text="$t('login.form.rememberme')">Remember me</span>
                     </b-form-checkbox>
                     <center><div>
                         <b-button type="submit" variant="primary" v-text="$t('login.form.button')" style="width: 25%;">Sign in</b-button>

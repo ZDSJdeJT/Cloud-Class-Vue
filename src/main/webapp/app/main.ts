@@ -27,6 +27,11 @@ import AlertService from '@/shared/alert/alert.service';
 import TranslationService from '@/locale/translation.service';
 import ConfigurationService from '@/admin/configuration/configuration.service';
 
+//导入第三方UI组件
+import ant from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
+Vue.use(ant);
+
 /* tslint:disable */
 
 // jhipster-needle-add-entity-service-to-main-import - JHipster will import entities services here

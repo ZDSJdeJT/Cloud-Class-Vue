@@ -7,6 +7,7 @@ export const accountStore: Module<any, any> = {
     authenticated: false,
     ribbonOnProfiles: '',
     activeProfiles: '',
+    firstLogin: false,
   },
   getters: {
     logon: state => state.logon,
@@ -14,6 +15,7 @@ export const accountStore: Module<any, any> = {
     authenticated: state => state.authenticated,
     activeProfiles: state => state.activeProfiles,
     ribbonOnProfiles: state => state.ribbonOnProfiles,
+    firstLogin: state => state.firstLogin,
   },
   mutations: {
     authenticate(state) {
@@ -34,6 +36,12 @@ export const accountStore: Module<any, any> = {
     },
     setRibbonOnProfiles(state, ribbon) {
       state.ribbonOnProfiles = ribbon;
+    },
+    firstLogin(state) {
+      state.firstLogin = true;
+    },
+    notFirstLogin(state) {
+      start.firstLogin = false;
     },
   },
 };

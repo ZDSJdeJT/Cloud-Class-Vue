@@ -35,7 +35,7 @@
     },
     "form": {
       "username.label": "Username",
-      "username.placeholder": "Your username",
+      "username.placeholder": "Your student numbere",
       "currentpassword.label": "Current password",
       "currentpassword.placeholder": "Current password",
       "newpassword.label": "New password",
@@ -63,14 +63,14 @@
       "validate": {
         "newpassword": {
           "required": "Your password is required.",
-          "minlength": "Your password is required to be at least 4 characters.",
-          "maxlength": "Your password cannot be longer than 50 characters.",
+          "minlength": "Your password is required to be at least 6 characters.",
+          "maxlength": "Your password cannot be longer than 24 characters.",
           "strength": "Password strength:"
         },
         "confirmpassword": {
           "required": "Your confirmation password is required.",
-          "minlength": "Your confirmation password is required to be at least 4 characters.",
-          "maxlength": "Your confirmation password cannot be longer than 50 characters."
+          "minlength": "Your confirmation password is required to be at least 6 characters.",
+          "maxlength": "Your confirmation password cannot be longer than 24 characters."
         },
         "email": {
           "required": "Your email is required.",

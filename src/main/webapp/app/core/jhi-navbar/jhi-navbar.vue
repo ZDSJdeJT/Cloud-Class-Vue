@@ -17,7 +17,14 @@
 
         <b-collapse is-nav id="header-tabs">
             <b-navbar-nav class="ml-auto">
-                <b-nav-item to="/" exact>
+                <!-- 根据是否登录判断首页的跳转路径 -->
+                <b-nav-item to="/first" exact v-if="authenticated && !firstLogin">
+                    <span>
+                        <font-awesome-icon icon="home" />
+                        <span v-text="$t('global.menu.home')">Home</span>
+                    </span>
+                </b-nav-item>
+                <b-nav-item to="/" exact v-if="!authenticated">
                     <span>
                         <font-awesome-icon icon="home" />
                         <span v-text="$t('global.menu.home')">Home</span>
@@ -97,7 +104,7 @@
                             Account
                         </span>
                     </span>
-                    <b-dropdown-item to="/account/settings" tag="b-dropdown-item" v-if="authenticated" active-class="active">
+                    <b-dropdown-item to="/account/settings" tag="b-dropdown-item" v-if="authenticated && !firstLogin" active-class="active">
                         <font-awesome-icon icon="wrench" />
                         <span v-text="$t('global.menu.account.settings')">Settings</span>
                     </b-dropdown-item>

@@ -35,7 +35,7 @@
     },
     "form": {
       "username.label": "ユーザー名",
-      "username.placeholder": "ユーザー名",
+      "username.placeholder": "学号",
       "currentpassword.label": "Current password",
       "currentpassword.placeholder": "Current password",
       "newpassword.label": "新しいパスワード",
@@ -63,14 +63,14 @@
       "validate": {
         "newpassword": {
           "required": "パスワードを入力してください。",
-          "minlength": "パスワードは4文字以上で入力してください。",
-          "maxlength": "パスワードは50文字以下で入力してください。",
+          "minlength": "パスワードは6文字以上で入力してください。",
+          "maxlength": "パスワードは24文字以下で入力してください。",
           "strength": "パスワード強度:"
         },
         "confirmpassword": {
           "required": "パスワード(確認)を入力してください。",
-          "minlength": "パスワード(確認)は4文字以上で入力してください。",
-          "maxlength": "パスワード(確認)は50文字以下で入力してください。"
+          "minlength": "パスワード(確認)は6文字以上で入力してください。",
+          "maxlength": "パスワード(確認)は24文字以下で入力してください。"
         },
         "email": {
           "required": "メールアドレスを入力してください。",

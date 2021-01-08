@@ -13,6 +13,7 @@ import account from '@/router/account.ts';
 import admin from '@/router/admin.ts';
 import entities from '@/router/entities.ts';
 import pages from '@/router/pages.ts';
+import first from '@/core/first/first.vue'; //主页Vue
 
 Vue.use(Router);
 
@@ -36,6 +37,11 @@ export default new Router({
       name: 'NotFound',
       component: Error,
       meta: { error404: true }
+    },
+    {
+      path: '/first',
+      name: 'first',
+      component: first
     },
     ...account,
     ...admin,

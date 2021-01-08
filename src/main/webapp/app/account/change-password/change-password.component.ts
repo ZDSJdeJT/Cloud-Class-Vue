@@ -3,6 +3,8 @@ import axios from 'axios';
 import { mapGetters } from 'vuex';
 import Component from 'vue-class-component';
 import { Vue, Inject } from 'vue-property-decorator';
+import { Button } from 'ant-design-vue';
+Vue.use(Button);
 
 const validations = {
   resetPassword: {
@@ -11,13 +13,13 @@ const validations = {
     },
     newPassword: {
       required,
-      minLength: minLength(4),
-      maxLength: maxLength(254),
+      minLength: minLength(6),
+      maxLength: maxLength(24),
     },
     confirmPassword: {
       required,
-      minLength: minLength(4),
-      maxLength: maxLength(254),
+      minLength: minLength(6),
+      maxLength: maxLength(24),
     },
   },
 };
@@ -63,5 +65,15 @@ export default class ChangePassword extends Vue {
 
   public get username(): string {
     return this.$store.getters.account ? this.$store.getters.account.login : '';
+  }
+
+  makeCurrentPasswordTypeText() {
+    var currentPasswordInput = document.getElementsByName('currentPassword')[0] as HTMLInputElement;
+    currentPasswordInput.type = 'text';
+  }
+
+  makeCurrentPasswordTypePassword() {
+    var currentPasswordInput = document.getElementsByName('currentPassword')[0] as HTMLInputElement;
+    currentPasswordInput.type = 'password';
   }
 }

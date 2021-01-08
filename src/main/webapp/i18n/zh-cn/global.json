@@ -35,7 +35,7 @@
     },
     "form": {
       "username.label": "账号",
-      "username.placeholder": "您的账号",
+      "username.placeholder": "您的学号",
       "currentpassword.label": "当前密码",
       "currentpassword.placeholder": "您的当前密码",
       "newpassword.label": "新密码",
@@ -63,14 +63,14 @@
       "validate": {
         "newpassword": {
           "required": "您的密码是必填项.",
-          "minlength": "您的密码长度至少要有4个字符",
-          "maxlength": "您的密码长度不能超过50个字符",
+          "minlength": "您的密码长度至少要有6个字符",
+          "maxlength": "您的密码长度不能超过24个字符",
           "strength": "密码强度:"
         },
         "confirmpassword": {
           "required": "您的确认密码是必填项.",
-          "minlength": "您的确认密码长度至少要有4个字符",
-          "maxlength": "您的确认密码长度不能超过50个字符"
+          "minlength": "您的确认密码长度至少要有6个字符",
+          "maxlength": "您的确认密码长度不能超过24个字符"
         },
         "email": {
           "required": "您的电子邮件是必填项.",
