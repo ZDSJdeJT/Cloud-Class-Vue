@@ -23,6 +23,12 @@
                                :class="{'valid': !$v.resetPassword.currentPassword.$invalid, 'invalid': $v.resetPassword.currentPassword.$invalid }"
                                v-bind:placeholder="$t('global.form[\'currentpassword.placeholder\']')"
                                v-model="$v.resetPassword.currentPassword.$model" required>
+                               <div style="position: absolute; top: 5.59375rem; left: 92%;">
+                                       <a-button-group>
+                                         <a-button type="primary" icon="eye" @click="makeCurrentPasswordTypeText()"/>
+                                         <a-button type="primary" icon="eye-invisible" @click="makeCurrentPasswordTypePassword()" />
+                                       </a-button-group>
+                               </div>
                         <div v-if="$v.resetPassword.currentPassword.$anyDirty && $v.resetPassword.currentPassword.$invalid">
                             <small class="form-text text-danger"
                                    v-if="!$v.resetPassword.currentPassword.required" v-text="$t('global.messages.validate.newpassword.required')">
@@ -36,6 +42,12 @@
                                v-bind:placeholder="$t('global.form[\'newpassword.placeholder\']')"
                                :class="{'valid': !$v.resetPassword.newPassword.$invalid, 'invalid': $v.resetPassword.newPassword.$invalid }"
                                v-model="$v.resetPassword.newPassword.$model" minlength=4 maxlength=50 required>
+                               <div style="position: absolute; top: 10.96875rem; left: 92%;">
+                                       <a-button-group>
+                                         <a-button type="primary" icon="eye" @click="makeNewPasswordTypeText()"/>
+                                         <a-button type="primary" icon="eye-invisible" @click="makeNewPasswordTypePassword()"/>
+                                       </a-button-group>
+                               </div>
                         <div v-if="$v.resetPassword.newPassword.$anyDirty && $v.resetPassword.newPassword.$invalid">
                             <small class="form-text text-danger"
                                    v-if="!$v.resetPassword.newPassword.required" v-text="$t('global.messages.validate.newpassword.required')">
@@ -74,7 +86,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" :disabled="$v.resetPassword.$invalid" class="btn btn-primary" v-text="$t('password.form.button')">Save</button>
+                    <center><button type="submit" :disabled="$v.resetPassword.$invalid" class="btn btn-primary" v-text="$t('password.form.button')" style="width: 10%;">Save</button></center>
                 </form>
             </div>
         </div>

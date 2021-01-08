@@ -76,4 +76,14 @@ export default class ChangePassword extends Vue {
     var currentPasswordInput = document.getElementsByName('currentPassword')[0] as HTMLInputElement;
     currentPasswordInput.type = 'password';
   }
+
+  makeNewPasswordTypeText() {
+    var newPasswordInput = document.getElementsByName('newPassword')[0] as HTMLInputElement;
+    newPasswordInput.type = 'text';
+  }
+
+  makeNewPasswordTypePassword() {
+    var newPasswordInput = document.getElementsByName('newPassword')[0] as HTMLInputElement;
+    newPasswordInput.type = 'password';
+  }
 }
