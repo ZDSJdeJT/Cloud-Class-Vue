@@ -6,6 +6,7 @@ const ResetPasswordInit = () => import('@/account/reset-password/init/reset-pass
 const ResetPasswordFinish = () => import('@/account/reset-password/finish/reset-password-finish.vue');
 const ChangePassword = () => import('@/account/change-password/change-password.vue');
 const Settings = () => import('@/account/settings/settings.vue');
+const First = () => import('@/core/first/first.vue'); //主页
 
 export default [
   {
@@ -38,6 +39,12 @@ export default [
     path: '/account/settings',
     name: 'Settings',
     component: Settings,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/info/first',
+    name: 'First',
+    component: First,
     meta: { authorities: [Authority.USER] },
   },
 ];

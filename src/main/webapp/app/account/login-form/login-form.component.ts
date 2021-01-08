@@ -39,7 +39,7 @@ export default class LoginForm extends Vue {
           this.$store.commit('firstLogin');
           this.$router.push({ path: '/account/password' }); //首次登录，跳转到改密码页面
         } else {
-          this.$router.push({ path: '/first' }); //登录成功，跳转到主页
+          this.$router.push({ path: '/info/first' }); //登录成功，跳转到主页
         }
       })
       .catch(() => {

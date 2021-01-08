@@ -8,11 +8,11 @@
             <p class="lead" v-text="$t('home.subtitle')">This is your homepage</p>
 
             <div>
-<!--                <div class="alert alert-success" v-if="authenticated">
+<!--               <div class="alert alert-success" v-if="authenticated">
                     <span v-if="username" v-text="$t('home.logged.message', { 'username': username})">You are logged in as user "{{username}}"</span>
                 </div> -->
 
-                <div class="alert alert-warning">
+                <div class="alert alert-warning" v-if="!authenticated">
                     <span v-text="$t('global.messages.info.authenticated.prefix')">Click here </span>
                     <a class="alert-link" v-on:click="openLogin()" v-text="$t('global.messages.info.authenticated.link')">sign in</a><span v-html="$t('global.messages.info.authenticated.suffix')">, if you have never logged in, you can use the default account:<br/>- Account number = your student number; default password ='123456'.</span>
                 </div>

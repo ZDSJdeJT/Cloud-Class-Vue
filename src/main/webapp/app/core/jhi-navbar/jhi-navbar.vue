@@ -18,7 +18,7 @@
         <b-collapse is-nav id="header-tabs">
             <b-navbar-nav class="ml-auto">
                 <!-- 根据是否登录判断首页的跳转路径 -->
-                <b-nav-item to="/first" exact v-if="authenticated && !firstLogin">
+                <b-nav-item to="/info/first" exact v-if="authenticated && !firstLogin">
                     <span>
                         <font-awesome-icon icon="home" />
                         <span v-text="$t('global.menu.home')">Home</span>
