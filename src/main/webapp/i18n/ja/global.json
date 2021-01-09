@@ -135,5 +135,8 @@
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": "雲クラス開発チーム（張思涵、王明泰、呉政令、劉衆）"
+  "footer": "雲クラス開発チーム（張思涵、王明泰、呉政令、劉衆）",
+  "confirmLogoutTitle": "ログアウト確認",
+  "confirmLogoutMessage": "このアカウントをログアウトしますか？",
+  "logout": "終了"
 }

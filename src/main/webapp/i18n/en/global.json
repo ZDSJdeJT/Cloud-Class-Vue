@@ -14,8 +14,8 @@
         "settings": "Settings",
         "password": "Password",
         "sessions": "Sessions",
-        "login": "Sign in",
-        "logout": "Sign out",
+        "login": "Login",
+        "logout": "Logout",
         "register": "Register"
       },
       "admin": {
@@ -136,5 +136,8 @@
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": "Cloud Class development group (Zhang Sihan, Wang Mingtai, Wu Zhengling, Liu Zhong)"
+  "footer": "Cloud Class development group (Zhang Sihan, Wang Mingtai, Wu Zhengling, Liu Zhong)",
+  "confirmLogoutTitle": "Confirm Logout",
+  "confirmLogoutMessage": "Are you sure you want to log out of this account?",
+  "logout": "Logout"
 }

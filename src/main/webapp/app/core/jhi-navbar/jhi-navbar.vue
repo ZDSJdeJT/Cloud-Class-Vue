@@ -121,28 +121,17 @@
           </b-dropdown-item>
           <b-dropdown-item v-if="authenticated" v-on:click="prepareLogout()" id="logout" active-class="active">
             <font-awesome-icon icon="sign-out-alt" />
-            <span v-text="$t('global.menu.account.logout')">Sign out</span>
+            <span v-text="$t('global.menu.account.logout')">Logout</span>
           </b-dropdown-item>
-          <b-modal
-            ref="userLogout"
-            id="userLogout"
-            title="$t('global.comfirmLogoutTitle')"
-            @ok="logout()"
-          >
+          <b-modal ref="userLogout" id="userLogout" title="Confirm logout" v-bind:title="$t('confirmLogoutTitle')" @ok="logout()">
             <div class="modal-body">
-              <p id="jhi-logout-user-heading" v-text="$t('global.comfirmLogoutMessage')">
-                Are you sure you want to logout this user?
+              <p id="jhi-logout-user-heading" v-text="$t('confirmLogoutMessage')">
+                Are you sure you want to logout?
               </p>
             </div>
             <div slot="modal-footer">
               <button type="button" class="btn btn-secondary" v-text="$t('entity.action.cancel')" v-on:click="closeDialog()">Cancel</button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                id="confirm-logout-user"
-                v-text="$t('global.logout')"
-                v-on:click="logout()"
-              >
+              <button type="button" class="btn btn-primary" id="confirm-logout-user" v-text="$t('logout')" v-on:click="logout()">
                 Logout
               </button>
             </div>
