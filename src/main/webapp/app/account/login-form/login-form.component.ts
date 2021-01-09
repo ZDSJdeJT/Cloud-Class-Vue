@@ -2,7 +2,6 @@ import axios from 'axios';
 import Component from 'vue-class-component';
 import { Vue, Inject } from 'vue-property-decorator';
 import AccountService from '@/account/account.service';
-import { PasswordCompileAndUncompile } from '@/utils/password-compile-and-uncompile';
 @Component({
   watch: {
     $route() {
