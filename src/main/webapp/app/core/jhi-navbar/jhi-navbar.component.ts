@@ -36,13 +36,11 @@ export default class JhiNavbar extends Vue {
   }
 
   public logout(): void {
-    var message = confirm('确认退出？');
-    if (message == true) {
-      localStorage.removeItem('jhi-authenticationToken');
-      sessionStorage.removeItem('jhi-authenticationToken');
-      this.$store.commit('logout');
-      this.$router.push('/');
-    }
+    localStorage.removeItem('jhi-authenticationToken');
+    sessionStorage.removeItem('jhi-authenticationToken');
+    this.$store.commit('logout');
+    this.$router.push('/');
+    (<any>this.$refs.userLogout).hide();
   }
 
   public openLogin(): void {
@@ -72,5 +70,15 @@ export default class JhiNavbar extends Vue {
 
   public get firstLogin(): boolean {
     return this.$store.getters.firstLogin;
+  }
+
+  public prepareLogout(): void {
+    if (<any>this.$refs.userLogout) {
+      (<any>this.$refs.userLogout).show();
+    }
+  }
+
+  public closeDialog(): void {
+    (<any>this.$refs.userLogout).hide();
   }
 }

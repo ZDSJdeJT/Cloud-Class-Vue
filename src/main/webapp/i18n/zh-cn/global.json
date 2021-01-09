@@ -135,5 +135,8 @@
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": "云班级开发组（张思涵、王明泰、吴政令、刘众）"
+  "footer": "云班级开发组（张思涵、王明泰、吴政令、刘众）",
+  "confirmLogoutTitle": "确认退出登录",
+  "confirmLogoutMessage": "确定要退出登录此账号？",
+  "logout": "退出"
 }
