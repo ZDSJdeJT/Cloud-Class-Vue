@@ -34,16 +34,16 @@
       "language": "言語"
     },
     "form": {
-      "username.label": "ユーザー名",
-      "username.placeholder": "学号",
+      "username.label": "学号",
+      "username.placeholder": "ユーザー番号",
       "currentpassword.label": "Current password",
-      "currentpassword.placeholder": "Current password",
+      "currentpassword.placeholder": "ユーザの現在のパスワード",
       "newpassword.label": "新しいパスワード",
-      "newpassword.placeholder": "新しいパスワード",
+      "newpassword.placeholder": "ユーザの新しいパスワード",
       "confirmpassword.label": "新しいパスワード(確認)",
-      "confirmpassword.placeholder": "新しいパスワード(確認)",
+      "confirmpassword.placeholder": "ユーザの新しいパスワードを確認します",
       "email.label": "メールアドレス",
-      "email.placeholder": "あなたのメールアドレス"
+      "email.placeholder": "ユーザのメール"
     },
     "messages": {
       "info": {
@@ -138,5 +138,8 @@
   "footer": "雲クラス開発チーム（張思涵、王明泰、呉政令、劉衆）",
   "confirmLogoutTitle": "ログアウト確認",
   "confirmLogoutMessage": "このアカウントをログアウトしますか？",
-  "logout": "終了"
+  "logout": "終了",
+  "firstLoginChangePasswordTitle": "システムが初めてログインしたことを検出しました",
+  "firstLoginChangePasswordMessage": "パスワードの変更に成功しました。ページを更新すれば、このシステムを正常に使えます！",
+  "sure": "を選択します"
 }

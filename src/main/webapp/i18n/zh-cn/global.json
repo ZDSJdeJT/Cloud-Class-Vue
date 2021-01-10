@@ -34,16 +34,16 @@
       "language": "语言"
     },
     "form": {
-      "username.label": "账号",
-      "username.placeholder": "您的学号",
+      "username.label": "学号",
+      "username.placeholder": "用户学号",
       "currentpassword.label": "当前密码",
-      "currentpassword.placeholder": "您的当前密码",
+      "currentpassword.placeholder": "用户的当前密码",
       "newpassword.label": "新密码",
-      "newpassword.placeholder": "您的新密码",
+      "newpassword.placeholder": "用户的新密码",
       "confirmpassword.label": "新密码确认",
-      "confirmpassword.placeholder": "确认您的新密码",
+      "confirmpassword.placeholder": "确认用户的新密码",
       "email.label": "电子邮件",
-      "email.placeholder": "您的电子邮件"
+      "email.placeholder": "用户的电子邮件"
     },
     "messages": {
       "info": {

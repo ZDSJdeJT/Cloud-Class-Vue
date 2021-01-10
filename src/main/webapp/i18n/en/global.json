@@ -34,16 +34,16 @@
       "language": "Language"
     },
     "form": {
-      "username.label": "Username",
-      "username.placeholder": "Your student numbere",
+      "username.label": "Student number",
+      "username.placeholder": "User student number",
       "currentpassword.label": "Current password",
-      "currentpassword.placeholder": "Current password",
+      "currentpassword.placeholder": "The current password of the user",
       "newpassword.label": "New password",
-      "newpassword.placeholder": "New password",
+      "newpassword.placeholder": "User's new password",
       "confirmpassword.label": "New password confirmation",
-      "confirmpassword.placeholder": "Confirm the new password",
+      "confirmpassword.placeholder": "Confirm user's new password",
       "email.label": "Email",
-      "email.placeholder": "Your email"
+      "email.placeholder": "User's email"
     },
     "messages": {
       "info": {
@@ -139,5 +139,8 @@
   "footer": "Cloud Class development group (Zhang Sihan, Wang Mingtai, Wu Zhengling, Liu Zhong)",
   "confirmLogoutTitle": "Confirm Logout",
   "confirmLogoutMessage": "Are you sure you want to log out of this account?",
-  "logout": "Logout"
+  "logout": "Logout",
+  "firstLoginChangePasswordTitle": "The system has detected that you are logging in for the first time",
+  "firstLoginChangePasswordMessage": "You have successfully modified the password, refresh the page can be normal use of the system!",
+  "sure": "sure"
 }
