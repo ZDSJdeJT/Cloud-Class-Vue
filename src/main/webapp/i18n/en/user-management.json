@@ -14,9 +14,9 @@
     "detail": {
       "title": "User"
     },
-    "login": "Login",
-    "firstName": "First name",
-    "lastName": "Last name",
+    "login": "Student number",
+    "firstName": "Nickname",
+    "lastName": "name",
     "email": "Email",
     "activated": "Activated",
     "deactivated": "Deactivated",

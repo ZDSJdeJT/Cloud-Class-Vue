@@ -2,11 +2,11 @@
   "settings": {
     "title": "[<strong>{{username}}</strong>]の設定",
     "form": {
-      "firstname": "名",
-      "firstname.placeholder": "名",
+      "firstname": "ニックネーム",
+      "firstname.placeholder": "あなたのニックネーム",
       "lastname": "姓",
-      "lastname.placeholder": "姓",
-      "language": "言語",
+      "lastname.placeholder": "名前",
+      "language": "お名前をお願いします",
       "button": "保存する"
     },
     "messages": {
@@ -17,14 +17,14 @@
       "success": "<strong>設定を保存しました!</strong>",
       "validate": {
         "firstname": {
-          "required": "名を入力してください",
-          "minlength": "名は1文字以上で入力してください",
-          "maxlength": "名は50文字以下で入力してください"
+          "required": "名を入力あなたのニックネーム",
+          "minlength": "名は1文字以上で入力あなたのニックネーム",
+          "maxlength": "名は50文字以下で入力あなたのニックネーム"
         },
         "lastname": {
-          "required": "姓を入力してください",
-          "minlength": "姓は1文字以上で入力してください",
-          "maxlength": "姓は50文字以下で入力してください"
+          "required": "姓をお名前をお願いします",
+          "minlength": "姓は1文字以上でお名前をお願いします",
+          "maxlength": "姓は50文字以下でお名前をお願いします"
         }
       }
     }
