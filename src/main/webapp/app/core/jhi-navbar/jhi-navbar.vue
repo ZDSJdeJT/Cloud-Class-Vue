@@ -19,7 +19,7 @@
     <b-collapse is-nav id="header-tabs">
       <b-navbar-nav class="ml-auto">
         <!-- 根据是否登录判断首页的跳转路径 -->
-        <b-nav-item to="/info/first" exact v-if="authenticated">
+        <b-nav-item to="/info/first" exact v-if="authenticated && !getFirstLogin()">
           <span>
             <font-awesome-icon icon="home" />
             <span v-text="$t('global.menu.home')">Home</span>
@@ -111,7 +111,7 @@
               Account
             </span>
           </span>
-          <b-dropdown-item to="/account/settings" tag="b-dropdown-item" v-if="authenticated" active-class="active">
+          <b-dropdown-item to="/account/settings" tag="b-dropdown-item" v-if="authenticated && !getFirstLogin()" active-class="active">
             <font-awesome-icon icon="wrench" />
             <span v-text="$t('global.menu.account.settings')">Settings</span>
           </b-dropdown-item>

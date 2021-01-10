@@ -78,4 +78,12 @@ export default class JhiNavbar extends Vue {
   public closeDialog(): void {
     (<any>this.$refs.userLogout).hide();
   }
+
+  public getFirstLogin(): boolean {
+    if (sessionStorage.getItem('firstLogin') == 'true') {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
