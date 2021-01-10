@@ -76,9 +76,17 @@ router.beforeEach((to, from, next) => {
 });
 
 /* tslint:disable */
-new Vue({
+var app = new Vue({
   el: '#app',
   components: { App },
+  created: function () {
+    if (sessionStorage.getItem('firstLogin') != null) {
+      sessionStorage.setItem('firstLogin', sessionStorage.getItem('firstLogin'));
+    }
+    if (sessionStorage.getItem('firstLogin') == 'true') {
+      this.$router.push({ path: '/account/password' }); //若首次登录，跳转至修改密码页面
+    }
+  },
   template: '<App/>',
   router,
   provide: {

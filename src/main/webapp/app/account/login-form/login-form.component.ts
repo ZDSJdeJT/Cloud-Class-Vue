@@ -34,10 +34,11 @@ export default class LoginForm extends Vue {
         this.authenticationError = false;
         this.$root.$emit('bv::hide::modal', 'login-page');
         this.accountService().retrieveAccount();
-        if (this.password == 'user') {
-          this.$store.commit('firstLogin');
+        if (this.password == '123456') {
+          sessionStorage.setItem('firstLogin', 'true');
           this.$router.push({ path: '/account/password' }); //首次登录，跳转到改密码页面
         } else {
+          sessionStorage.setItem('firstLogin', 'false');
           this.$router.push({ path: '/info/first' }); //登录成功，跳转到主页
         }
       })

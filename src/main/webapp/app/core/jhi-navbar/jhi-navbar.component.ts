@@ -38,6 +38,7 @@ export default class JhiNavbar extends Vue {
   public logout(): void {
     localStorage.removeItem('jhi-authenticationToken');
     sessionStorage.removeItem('jhi-authenticationToken');
+    sessionStorage.removeItem('firstLogin');
     this.$store.commit('logout');
     this.$router.push('/');
     (<any>this.$refs.userLogout).hide();
@@ -66,10 +67,6 @@ export default class JhiNavbar extends Vue {
 
   public get inProduction(): boolean {
     return this.$store.getters.activeProfiles.indexOf('prod') > -1;
-  }
-
-  public get firstLogin(): boolean {
-    return this.$store.getters.firstLogin;
   }
 
   public prepareLogout(): void {

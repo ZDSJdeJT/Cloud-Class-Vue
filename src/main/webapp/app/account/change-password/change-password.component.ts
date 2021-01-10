@@ -13,12 +13,12 @@ const validations = {
     },
     newPassword: {
       required,
-      minLength: minLength(6),
+      minLength: minLength(8),
       maxLength: maxLength(24),
     },
     confirmPassword: {
       required,
-      minLength: minLength(6),
+      minLength: minLength(8),
       maxLength: maxLength(24),
     },
   },
@@ -53,6 +53,7 @@ export default class ChangePassword extends Vue {
           newPassword: this.resetPassword.newPassword,
         })
         .then(() => {
+          sessionStorage.setItem('firstLogin', 'false');
           this.success = 'OK';
           this.error = null;
         })

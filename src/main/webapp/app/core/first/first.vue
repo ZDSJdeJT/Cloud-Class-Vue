@@ -7,8 +7,8 @@
         <a-comment :author="item.petName">
           <a-avatar
             slot="avatar"
-            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-          /><!--后期头像可用后用item.postUserHeadPortraitUri替换-->
+            :src="item.postUserHeadPortraitUri"
+          />
           <template slot="actions">
             <span key="comment-basic-like">
               <a-tooltip title="点赞">
@@ -16,12 +16,19 @@
               </a-tooltip>
               <span style="padding-left: '8px'; cursor: 'auto';"> {{ item.tagsCount }}&nbsp;&nbsp;&nbsp;&nbsp; </span>
             </span>
-            <span key="comment-basic-reply-to"
-              ><a-tooltip title="评论"><a-icon type="message" /></a-tooltip>&nbsp;{{ item.commentsCount }}</span
-            >
+            <span key="comment-basic-reply-to">
+              <a-tooltip title="评论"><a-icon type="message" /></a-tooltip>&nbsp;{{ item.commentsCount }}
+            </span>
           </template>
           <p slot="content">
-            {{ item.content }}
+            <a :id="spliceContentId(index)" class="dynamicStyle">{{ showPartOfDynamicContent(index) }}&nbsp;&nbsp;</a
+            ><span key="view-dynamic-content-details">
+              <a-tooltip placement="left" title="查看详情" v-if="isContentTooLong[index]"
+                ><a-icon type="plus-circle" @click="viewDynamicContentDetails(index)" /></a-tooltip
+              >&nbsp;<a-tooltip placement="right" title="收起详情" v-if="isContentTooLong[index]"
+                ><a-icon type="minus-circle" @click="cancelViewDynamicContentDetails(index)"
+              /></a-tooltip>
+            </span>
           </p>
           <a-tooltip slot="datetime" :title="timeFormatConversion(item.createTime)">
             <span>{{ calculationTimeDifference(item.createTime) }}</span>
@@ -33,9 +40,13 @@
 </template>
 
 <style>
-p {
+.dynamicStyle {
   font-size: 18px;
+}
+p {
   line-height: 33px;
+  margin-right: 4cm;
+  margin-left: 0.3cm;
 }
 </style>
 
@@ -44,6 +55,10 @@ import axios from 'axios';
 export default {
   data() {
     return {
+      queryDynamicInfo : {
+        page : 0,
+        stuID : this.getStuId()
+      },
       isContentTooLong : [],
       action : null,
       dynamicList: [], //动态数据列表
@@ -52,15 +67,17 @@ export default {
   },
   created() {
     this.getDynamicList();
-    this.init();
   },
   methods: {
     getDynamicList() { //获取动态列表
       axios
-        .get('api/message/getDynamic')
+        .get('api/message/getDynamic', {
+          params : this.queryDynamicInfo
+        })
         .then(response => {
           if (response.status == 200) {
             this.dynamicList = response.data;
+            this.init();
           }
         })
         .catch(error => {
@@ -69,11 +86,11 @@ export default {
     },
 
     init() { //初始化
-    for (i = 0; i < this.dynamicList.length; i++) {
-      if (this.dynamicList[i].content.length > 210) { //内容过长
-
+    for (let i = 0; i < this.dynamicList.length; i++) {
+      if (this.dynamicList[i].content.length > 250) { //内容过长
+      this.isContentTooLong.push(true);
       } else { //内容不过长
-
+      this.isContentTooLong.push(false);
       }
     }
     },
@@ -129,6 +146,32 @@ export default {
     } else if (timeDifference >= 31104000) {
       return ((parseInt(timeDifference / 60 / 60 / 24 / 30 / 12)) + "年前发布了...");
     }
+    },
+
+    viewDynamicContentDetails(index) { //查看动态内容详情
+    var dynamicContent = document.getElementById('dynamicContent' +index); 
+    dynamicContent.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + this.dynamicList[index].content + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; 
+    },
+
+    cancelViewDynamicContentDetails(index) { //取消查看动态内容详情
+    var dynamicContent = document.getElementById('dynamicContent' +index); 
+    dynamicContent.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + this.dynamicList[index].content.substr(0,250) + "......" + "&nbsp;&nbsp;"; 
+    },
+
+    showPartOfDynamicContent(index) { //展示部分动态内容（如果内容过长）
+    if (this.dynamicList[index].content.length > 250) { //内容过长
+    return "      " + this.dynamicList[index].content.substr(0,250) + "......";
+    } else { //内容不过长
+    return "      " + this.dynamicList[index].content;
+    }
+    },
+
+    spliceContentId : function(index){ //拼接Id
+    return "dynamicContent" + index;
+    },
+
+    getStuId() {
+    return this.$store.getters.account ? this.$store.getters.account.login : '';
     }
   },
 };
