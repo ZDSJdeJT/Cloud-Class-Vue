@@ -9,11 +9,11 @@ const Settings = () => import('@/account/settings/settings.vue');
 const First = () => import('@/core/first/first.vue'); //主页
 
 export default [
-  {
+  /*   {
     path: '/register',
     name: 'Register',
     component: Register,
-  },
+  }, */
   {
     path: '/account/activate',
     name: 'Activate',

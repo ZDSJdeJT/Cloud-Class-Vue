@@ -74,7 +74,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-control-label" for="firstPassword" v-text="$t('global.form[\'newpassword.label\']')">New password</label>
-                        <input type="password" class="form-control" id="firstPassword" name="password"
+                        <input disabled type="text" class="form-control" id="firstPassword" name="password"
                                :class="{'valid': !$v.registerAccount.password.$invalid, 'invalid': $v.registerAccount.password.$invalid }"
                                v-model="$v.registerAccount.password.$model" minlength=4 maxlength=50 required v-bind:placeholder="$t('global.form[\'newpassword.placeholder\']')">
                         <div v-if="$v.registerAccount.password.$anyDirty && $v.registerAccount.password.$invalid">
@@ -95,7 +95,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-control-label" for="secondPassword" v-text="$t('global.form[\'confirmpassword.label\']')">New password confirmation</label>
-                        <input type="password" class="form-control" id="secondPassword" name="confirmPasswordInput"
+                        <input disabled type="text" class="form-control" id="secondPassword" name="confirmPasswordInput"
                                :class="{'valid': !$v.confirmPassword.$invalid, 'invalid': $v.confirmPassword.$invalid }"
                                v-model="$v.confirmPassword.$model" minlength=4 maxlength=50 required v-bind:placeholder="$t('global.form[\'confirmpassword.placeholder\']')">
                         <div v-if="$v.confirmPassword.$dirty && $v.confirmPassword.$invalid">
@@ -118,13 +118,13 @@
                         </div>
                     </div>
 
-                    <button type="submit" :disabled="$v.$invalid " class="btn btn-primary" v-text="$t('register.form.button')">Register</button>
+                    <center><button type="submit" :disabled="$v.$invalid " class="btn btn-primary" v-text="$t('register.form.button')">Register</button></center>
                 </form>
                 <p></p>
-                <div class="alert alert-warning">
+<!--                 <div class="alert alert-warning">
                     <span v-text="$t('global.messages.info.authenticated.prefix')">If you want to </span>
                     <a class="alert-link" v-on:click="openLogin()" v-text="$t('global.messages.info.authenticated.link')">sign in</a><span v-html="$t('global.messages.info.authenticated.suffix')">, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").</span>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

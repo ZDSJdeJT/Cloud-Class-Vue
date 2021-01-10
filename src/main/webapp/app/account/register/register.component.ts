@@ -46,9 +46,9 @@ export default class Register extends Vue {
   public registerAccount: any = {
     login: undefined,
     email: undefined,
-    password: undefined,
+    password: '123456', //undefined
   };
-  public confirmPassword: any = null;
+  public confirmPassword: any = '123456'; //null
   public error = '';
   public errorEmailExists = '';
   public errorUserExists = '';

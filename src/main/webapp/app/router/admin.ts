@@ -9,6 +9,7 @@ const JhiHealthComponent = () => import('@/admin/health/health.vue');
 const JhiLogsComponent = () => import('@/admin/logs/logs.vue');
 const JhiAuditsComponent = () => import('@/admin/audits/audits.vue');
 const JhiMetricsComponent = () => import('@/admin/metrics/metrics.vue');
+const Register = () => import('@/account/register/register.vue');
 
 export default [
   {
@@ -17,10 +18,16 @@ export default [
     component: JhiUserManagementComponent,
     meta: { authorities: [Authority.ADMIN] },
   },
-  {
+  /*   {
     path: '/admin/user-management/new',
     name: 'JhiUserCreate',
     component: JhiUserManagementEditComponent,
+    meta: { authorities: [Authority.ADMIN] },
+  }, */
+  {
+    path: '/admin/user-management/new',
+    name: 'JhiUserCreate',
+    component: Register,
     meta: { authorities: [Authority.ADMIN] },
   },
   {
@@ -35,7 +42,6 @@ export default [
     component: JhiUserManagementViewComponent,
     meta: { authorities: [Authority.ADMIN] },
   },
-
   {
     path: '/admin/docs',
     name: 'JhiDocsComponent',
