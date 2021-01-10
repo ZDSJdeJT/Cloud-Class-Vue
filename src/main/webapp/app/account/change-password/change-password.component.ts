@@ -56,6 +56,10 @@ export default class ChangePassword extends Vue {
           sessionStorage.setItem('firstLogin', 'false');
           this.success = 'OK';
           this.error = null;
+          this.resetPassword.currentPassword = '';
+          this.resetPassword.newPassword = '';
+          this.resetPassword.confirmPassword = '';
+          this.firstLoginChangePasswordDialog();
         })
         .catch(() => {
           this.success = null;
@@ -86,5 +90,25 @@ export default class ChangePassword extends Vue {
   makeNewPasswordTypePassword() {
     var newPasswordInput = document.getElementsByName('newPassword')[0] as HTMLInputElement;
     newPasswordInput.type = 'password';
+  }
+
+  public getFirstLogin(): boolean {
+    if (sessionStorage.getItem('firstLogin') == 'true') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public firstLoginChangePasswordDialog(): void {
+    debugger;
+    var isFirstLogin = this.getFirstLogin();
+    if (this.success == 'OK' && this.error == null && isFirstLogin) {
+      (<any>this.$refs.firstLoginChangePassword).show();
+    }
+  }
+
+  public closeDialog(): void {
+    (<any>this.$refs.firstLoginChangePassword).hide();
   }
 }

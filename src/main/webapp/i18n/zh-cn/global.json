@@ -138,5 +138,8 @@
   "footer": "云班级开发组（张思涵、王明泰、吴政令、刘众）",
   "confirmLogoutTitle": "确认退出登录",
   "confirmLogoutMessage": "确定要退出登录此账号？",
-  "logout": "退出"
+  "logout": "退出",
+  "firstLoginChangePasswordTitle": "系统检测到您为首次登录",
+  "firstLoginChangePasswordMessage": "您已成功修改密码，刷新页面即可正常使用本系统！",
+  "sure": "确定"
 }
