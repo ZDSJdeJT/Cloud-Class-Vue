@@ -1,7 +1,7 @@
 {
   "reset": {
     "request": {
-      "title": "Reset your password",
+      "title": "Please contact the administrator to reset your password!",
       "form": {
         "button": "Reset password"
       },

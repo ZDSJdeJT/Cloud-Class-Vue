@@ -18,16 +18,10 @@ export default [
     component: JhiUserManagementComponent,
     meta: { authorities: [Authority.ADMIN] },
   },
-  /*   {
-    path: '/admin/user-management/new',
-    name: 'JhiUserCreate',
-    component: JhiUserManagementEditComponent,
-    meta: { authorities: [Authority.ADMIN] },
-  }, */
   {
     path: '/admin/user-management/new',
     name: 'JhiUserCreate',
-    component: Register,
+    component: JhiUserManagementEditComponent,
     meta: { authorities: [Authority.ADMIN] },
   },
   {

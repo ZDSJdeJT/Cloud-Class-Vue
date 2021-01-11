@@ -3,9 +3,9 @@
     "title": "User settings for [<strong>{{username}}</strong>]",
     "form": {
       "firstname": "Nickname",
-      "firstname.placeholder": "Your Nickname",
+      "firstname.placeholder": "User's nickname",
       "lastname": "Name",
-      "lastname.placeholder": "Your Name",
+      "lastname.placeholder": "User's name",
       "language": "Language",
       "button": "Save"
     },

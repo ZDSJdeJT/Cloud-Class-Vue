@@ -1,7 +1,7 @@
 {
   "reset": {
     "request": {
-      "title": "重置您的密码",
+      "title": "请联系管理员重设您的密码！",
       "form": {
         "button": "重置密码"
       },

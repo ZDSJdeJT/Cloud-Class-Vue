@@ -1,7 +1,7 @@
 {
   "reset": {
     "request": {
-      "title": "Reset your password",
+      "title": "管理者に連絡してパスワードをリセットしてください。",
       "form": {
         "button": "Reset password"
       },

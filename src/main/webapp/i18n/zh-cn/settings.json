@@ -3,9 +3,9 @@
     "title": "[<strong>{{username}}</strong>] 的用户设置",
     "form": {
       "firstname": "昵称",
-      "firstname.placeholder": "您的昵称",
+      "firstname.placeholder": "用户的昵称",
       "lastname": "姓名",
-      "lastname.placeholder": "您的姓名",
+      "lastname.placeholder": "用户的姓名",
       "language": "语言",
       "button": "保存"
     },

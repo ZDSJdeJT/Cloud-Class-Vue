@@ -3,9 +3,9 @@
     "title": "[<strong>{{username}}</strong>]の設定",
     "form": {
       "firstname": "ニックネーム",
-      "firstname.placeholder": "あなたのニックネーム",
+      "firstname.placeholder": "ユーザーのニックネーム",
       "lastname": "姓",
-      "lastname.placeholder": "名前",
+      "lastname.placeholder": "ユーザの名前",
       "language": "お名前をお願いします",
       "button": "保存する"
     },
