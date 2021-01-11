@@ -13,7 +13,7 @@
           "pattern": "Create user is invalid."
         }
       },
-      "success": "<strong>Created successfully!</strong> ",
+      "success": "<strong>Created successfully! Please don't forget to activate in user management</strong> ",
       "error": {
         "fail": "<strong>Creation failed!</strong> Please try again later.",
         "userexists": "<strong>Login name already establish!</strong> Please choose another one.",

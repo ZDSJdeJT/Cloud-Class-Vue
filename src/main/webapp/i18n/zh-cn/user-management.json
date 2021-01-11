@@ -5,7 +5,7 @@
       "createLabel": "创建新用户",
       "createOrEditLabel": "创建或编辑用户"
     },
-    "created": "用户 {{ param }} 创建成功，请别忘了去“用户管理”里激活",
+    "created": "用户 {{ param }} 创建成功",
     "updated": "用户 {{ param }} 更新成功",
     "deleted": "用户 {{ param }} 删除成功",
     "delete": {

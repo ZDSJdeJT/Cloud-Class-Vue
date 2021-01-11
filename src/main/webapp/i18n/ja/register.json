@@ -13,7 +13,7 @@
           "pattern": "Your username is invalid."
         }
       },
-      "success": "<strong>作成成功</strong> ",
+      "success": "<strong>作成成功！「ユーザー管理」でアクティブにすることを忘れないでください</strong> ",
       "error": {
         "fail": "<strong>作成が失敗しました!</strong> 後ほど再度登録を行ってください。",
         "userexists": "<strong>ユーザー名が既に作成されています!</strong> 別のユーザー名を使用してください。",

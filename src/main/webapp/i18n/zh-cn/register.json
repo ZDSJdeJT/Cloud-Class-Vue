@@ -13,7 +13,7 @@
           "pattern": "Your username is invalid."
         }
       },
-      "success": "<strong>创建成功!</strong> ",
+      "success": "<strong>创建成功! 请别忘了去“用户管理”里激活 </strong> ",
       "error": {
         "fail": "<strong>创建失败!</strong> 请稍后再试.",
         "userexists": "<strong>账号已被创建!</strong> 请选择其它账号.",
