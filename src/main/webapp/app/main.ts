@@ -30,7 +30,9 @@ import ConfigurationService from '@/admin/configuration/configuration.service';
 //导入第三方UI组件
 import ant from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
+import FormModel from 'ant-design-vue';
 Vue.use(ant);
+Vue.use(FormModel);
 
 /* tslint:disable */
 

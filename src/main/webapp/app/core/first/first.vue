@@ -2,6 +2,9 @@
   <div>
     <!--动态列表div-->
     <h2 v-text="$t('first.title')"></h2>
+    <a-button type="primary" @click="showModal" v-text="$t('first.releaseDynamic')" style="position: absolute; top: 1.3rem; left: 88%;">
+    </a-button>
+    <collection-create-form ref="collectionForm" :visible="visible" @cancel="handleCancel" @create="handleCreate" />
     <a-list class="comment-list" item-layout="horizontal" :data-source="this.dynamicList">
       <a-list-item slot="renderItem" slot-scope="item, index">
         <a-comment :author="item.petName">
@@ -38,30 +41,9 @@
           </a-tooltip>
           <div :id="spliceId('dynamicComment', index)" hidden>
             <div :v-if="false">
-            <a-comment :v-for="commentOfDynamic in dynamicCommentList[0]" :key="commentOfDynamic.id">
-              <!--评论-->
-              <span slot="actions">
-                <span key="comment-basic-like">
-                  <a-tooltip title="点赞">
-                    <a-icon type="like" :theme="action === 'liked' ? 'filled' : 'outlined'" />
-                  </a-tooltip>
-                  <span style="padding-left: '8px'; cursor: 'auto';"> 死数据&nbsp;&nbsp;&nbsp;&nbsp; </span>
-                </span>
-                <span slot="actions">回复</span>
-                <span>&nbsp;&nbsp;&nbsp;修改</span>
-                <span>&nbsp;&nbsp;&nbsp;<font color="red">删除</font></span>
-              </span>
-              <a slot="author">{{ commentOfDynamic.petName }}</a>
-              <a-avatar slot="avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" alt="Han Solo" />
-              <p slot="content">
-                <a class="dynamicStyle"
-                  >We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure).</a
-                >
-              </p>
-              <a-tooltip slot="datetime">
-                <span>时间</span>
-              </a-tooltip>
+              <!-- <a-comment :v-for="commentOfDynamic in dynamicCommentList[0]" :key="commentOfDynamic.id"> -->
               <a-comment>
+                <!--评论-->
                 <span slot="actions">
                   <span key="comment-basic-like">
                     <a-tooltip title="点赞">
@@ -73,7 +55,7 @@
                   <span>&nbsp;&nbsp;&nbsp;修改</span>
                   <span>&nbsp;&nbsp;&nbsp;<font color="red">删除</font></span>
                 </span>
-                <a slot="author">Han Solo</a>
+                <a slot="author">commentOfDynamic.petName</a>
                 <a-avatar slot="avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" alt="Han Solo" />
                 <p slot="content">
                   <a class="dynamicStyle"
@@ -83,8 +65,30 @@
                 <a-tooltip slot="datetime">
                   <span>时间</span>
                 </a-tooltip>
+                <a-comment>
+                  <span slot="actions">
+                    <span key="comment-basic-like">
+                      <a-tooltip title="点赞">
+                        <a-icon type="like" :theme="action === 'liked' ? 'filled' : 'outlined'" />
+                      </a-tooltip>
+                      <span style="padding-left: '8px'; cursor: 'auto';"> 死数据&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                    </span>
+                    <span slot="actions">回复</span>
+                    <span>&nbsp;&nbsp;&nbsp;修改</span>
+                    <span>&nbsp;&nbsp;&nbsp;<font color="red">删除</font></span>
+                  </span>
+                  <a slot="author">Han Solo</a>
+                  <a-avatar slot="avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" alt="Han Solo" />
+                  <p slot="content">
+                    <a class="dynamicStyle"
+                      >We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure).</a
+                    >
+                  </p>
+                  <a-tooltip slot="datetime">
+                    <span>时间</span>
+                  </a-tooltip>
+                </a-comment>
               </a-comment>
-            </a-comment>
             </div>
           </div>
         </a-comment>
@@ -106,10 +110,40 @@ p {
 
 <script>
 import axios from 'axios';
+const CollectionCreateForm = {
+  props: ['visible'],
+  beforeCreate() {
+    this.form = this.$form.createForm(this, { name: 'form_in_modal' });
+  },
+  template: `
+    <a-modal
+      :visible="visible"
+      title='发布新的动态'
+      okText='发布'
+      cancelText='取消'
+      @cancel="() => { $emit('cancel') }"
+      @ok="() => { $emit('create') }"
+    >
+      <a-form layout='vertical' :form="form">
+        <a-form-item label='内容'>
+          <a-input
+            type='textarea'
+            v-decorator="[
+              'contentOfReleaseDynamic',
+              {
+                rules: [{ required: true, message: '内容是必填项！' }],
+              }
+            ]"
+          />
+        </a-form-item>
+      </a-form>
+    </a-modal>
+  `,
+};
 export default {
   data() {
     return {
-      queryDynamicInfo : {
+      queryDynamicInfo: {
         page : 0,
         stuID : this.getStuId()
       },
@@ -117,19 +151,12 @@ export default {
       canIChangeDynamic : [], //是否可修改动态
       action : null,
       dynamicList : [], //动态数据列表
-      dynamicCommentList : [{
-    "id": 65,
-    "content": "555",
-    "petName": "ZDSJdeJT",
-    "createTime": "03:23:05",
-    "postUserId": 4181153010,
-    "tagsCount": null,
-    "cCommentsCount": 0,
-    "postUserHeadPortraitUri": null,
-    "userHasTags": false,
-    "comments": []
-  }] //动态评论列表
+      dynamicCommentList : [], //动态评论列表
+      visible: false,
     };
+  },
+  components:{
+    CollectionCreateForm
   },
   created() {
     this.getDynamicList();
@@ -295,6 +322,43 @@ export default {
         }
       }
       return res;
+    },
+
+    showModal() {
+      this.visible = true;
+    },
+
+    handleCancel() {
+      this.visible = false;
+    },
+
+    handleCreate() {
+      const form = this.$refs.collectionForm.form;
+      form.validateFields((err, values) => {
+        if (err) {
+          return;
+        }
+        console.log('Received values of form: ', values);       
+        this.releaseDynamic(values.contentOfReleaseDynamic);
+        form.resetFields();
+        this.visible = false;
+      });
+    },
+
+    releaseDynamic(contentOfReleaseDynamic) {
+      var param = new URLSearchParams();
+      param.append('content',contentOfReleaseDynamic);
+      param.append('postUserId',this.getStuId());
+      var data = new  FormData();
+      data.append('content',contentOfReleaseDynamic);
+        axios.post('api/message/addDynamic',param
+          )
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
     }
   },
 };
