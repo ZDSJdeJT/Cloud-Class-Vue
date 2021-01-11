@@ -1,13 +1,13 @@
 {
   "reset": {
     "request": {
-      "title": "Please contact the administrator to reset your password!",
+      "title": "Reset your password",
       "form": {
         "button": "Reset password"
       },
       "messages": {
         "info": "Enter the email address you used to register",
-        "success": "Check your emails for details on how to reset your password."
+        "success": "Please contact the development team to reset your password"
       }
     },
     "finish": {
