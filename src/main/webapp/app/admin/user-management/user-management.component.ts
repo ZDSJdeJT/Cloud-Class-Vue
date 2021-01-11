@@ -91,8 +91,9 @@ export default class JhiUserManagementComponent extends mixins(AlertMixin) {
         this.getAlertFromStore();
         this.removeId = null;
         this.loadAll();
-        this.closeDialog();
       });
+    this.closeDialog();
+    this.$router.go(0); //刷新本页面
   }
 
   public prepareRemove(instance): void {
