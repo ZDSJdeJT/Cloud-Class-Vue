@@ -78,6 +78,10 @@ export default {
           if (response.status == 200) {
             this.dynamicList = response.data;
             this.init();
+            for (let i = 0; i < this.dynamicList.length; i++) {
+              this.getCommentList(i);
+            }
+            console.log("commentList:" + this.commentList);
           }
         })
         .catch(error => {
@@ -95,19 +99,24 @@ export default {
     }
     },
 
-/*     getCommentList(index) {
+    getCommentList(index) {
       axios
-        .get('api/message/getComment', index)
+        .get('api/message/getComment', {
+          params : {
+            id : this.dynamicList[index].id,
+            stuID : this.getStuId()
+          }
+        })
         .then(response => {
           if (response.status == 200) {
-            this.commentList = response.data;
-            console.log("commentList:" + this.commentList);
+            var comment = response.data;
+            this.commentList.push(comment);
           }
         })
         .catch(error => {
           console.log(error); //控制台打印异常
         });
-    }, */
+    },
 
     like(index) { //点赞方法
       if (this.action === null || this.action === 'disliked') {

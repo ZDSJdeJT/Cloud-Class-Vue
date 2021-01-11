@@ -34,7 +34,7 @@
                 <a-button type="primary" icon="eye-invisible" @click="makeCurrentPasswordTypePassword()" />
               </a-button-group>
             </div>
-            <div v-if="$v.resetPassword.currentPassword.$anyDirty && $v.resetPassword.currentPassword.$invalid">
+<!--             <div v-if="$v.resetPassword.currentPassword.$anyDirty && $v.resetPassword.currentPassword.$invalid">
               <small
                 class="form-text text-danger"
                 v-if="!$v.resetPassword.currentPassword.required"
@@ -42,7 +42,7 @@
               >
                 Your password is required.
               </small>
-            </div>
+            </div> -->
           </div>
           <div class="form-group">
             <label class="form-control-label" for="newPassword" v-text="$t('global.form[\'newpassword.label\']')">New password</label>
