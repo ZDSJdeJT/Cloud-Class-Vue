@@ -1,31 +1,34 @@
 <template>
   <div>
     <!--动态列表div-->
-    <h2>&nbsp;&nbsp;动态 :&nbsp;)</h2>
+    <h2 v-text="$t('first.title')"></h2>
     <a-list class="comment-list" item-layout="horizontal" :data-source="this.dynamicList">
       <a-list-item slot="renderItem" slot-scope="item, index">
         <a-comment :author="item.petName">
-          <a-avatar
-            slot="avatar"
-            :src="item.postUserHeadPortraitUri"
-          />
+          <!--动态-->
+          <a-avatar slot="avatar" :src="item.postUserHeadPortraitUri" />
           <template slot="actions">
             <span key="comment-basic-like">
-              <a-tooltip title="点赞">
+              <a-tooltip title="点赞" placement="bottom">
                 <a-icon type="like" :theme="action === 'liked' ? 'filled' : 'outlined'" @click="like(index)" />
               </a-tooltip>
               <span style="padding-left: '8px'; cursor: 'auto';"> {{ item.tagsCount }}&nbsp;&nbsp;&nbsp;&nbsp; </span>
             </span>
             <span key="comment-basic-reply-to">
-              <a-tooltip title="评论"><a-icon type="message" /></a-tooltip>&nbsp;{{ item.commentsCount }}
+              <a-tooltip title="查看评论" placement="bottom"><a-icon type="message" @click="viewComments(index)" /></a-tooltip>&nbsp;{{
+                item.commentsCount
+              }}
             </span>
+            <span>&nbsp;&nbsp;&nbsp;回复</span>
+            <span v-if="canIChangeDynamic[index]">&nbsp;&nbsp;&nbsp;修改</span>
+            <span>&nbsp;&nbsp;&nbsp;<font color="red">删除</font></span>
           </template>
           <p slot="content">
-            <a :id="spliceContentId(index)" class="dynamicStyle">{{ showPartOfDynamicContent(index) }}&nbsp;&nbsp;</a
+            <a :id="spliceId('dynamicContent', index)" class="dynamicStyle">{{ showPartOfDynamicContent(index) }}&nbsp;&nbsp;</a
             ><span key="view-dynamic-content-details">
-              <a-tooltip placement="left" title="查看详情" v-if="isContentTooLong[index]"
+              <a-tooltip placement="bottom" title="查看详情" v-if="isDynamicContentTooLong[index]"
                 ><a-icon type="plus-circle" @click="viewDynamicContentDetails(index)" /></a-tooltip
-              >&nbsp;<a-tooltip placement="right" title="收起详情" v-if="isContentTooLong[index]"
+              >&nbsp;<a-tooltip placement="right" title="收起详情" v-if="isDynamicContentTooLong[index]"
                 ><a-icon type="minus-circle" @click="cancelViewDynamicContentDetails(index)"
               /></a-tooltip>
             </span>
@@ -33,6 +36,57 @@
           <a-tooltip slot="datetime" :title="timeFormatConversion(item.createTime)">
             <span>{{ calculationTimeDifference(item.createTime) }}</span>
           </a-tooltip>
+          <div :id="spliceId('dynamicComment', index)" hidden>
+            <div :v-if="false">
+            <a-comment :v-for="commentOfDynamic in dynamicCommentList[0]" :key="commentOfDynamic.id">
+              <!--评论-->
+              <span slot="actions">
+                <span key="comment-basic-like">
+                  <a-tooltip title="点赞">
+                    <a-icon type="like" :theme="action === 'liked' ? 'filled' : 'outlined'" />
+                  </a-tooltip>
+                  <span style="padding-left: '8px'; cursor: 'auto';"> 死数据&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                </span>
+                <span slot="actions">回复</span>
+                <span>&nbsp;&nbsp;&nbsp;修改</span>
+                <span>&nbsp;&nbsp;&nbsp;<font color="red">删除</font></span>
+              </span>
+              <a slot="author">{{ commentOfDynamic.petName }}</a>
+              <a-avatar slot="avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" alt="Han Solo" />
+              <p slot="content">
+                <a class="dynamicStyle"
+                  >We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure).</a
+                >
+              </p>
+              <a-tooltip slot="datetime">
+                <span>时间</span>
+              </a-tooltip>
+              <a-comment>
+                <span slot="actions">
+                  <span key="comment-basic-like">
+                    <a-tooltip title="点赞">
+                      <a-icon type="like" :theme="action === 'liked' ? 'filled' : 'outlined'" />
+                    </a-tooltip>
+                    <span style="padding-left: '8px'; cursor: 'auto';"> 死数据&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                  </span>
+                  <span slot="actions">回复</span>
+                  <span>&nbsp;&nbsp;&nbsp;修改</span>
+                  <span>&nbsp;&nbsp;&nbsp;<font color="red">删除</font></span>
+                </span>
+                <a slot="author">Han Solo</a>
+                <a-avatar slot="avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" alt="Han Solo" />
+                <p slot="content">
+                  <a class="dynamicStyle"
+                    >We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure).</a
+                  >
+                </p>
+                <a-tooltip slot="datetime">
+                  <span>时间</span>
+                </a-tooltip>
+              </a-comment>
+            </a-comment>
+            </div>
+          </div>
         </a-comment>
       </a-list-item>
     </a-list>
@@ -59,10 +113,22 @@ export default {
         page : 0,
         stuID : this.getStuId()
       },
-      isContentTooLong : [],
+      isDynamicContentTooLong : [], //动态内容是否过长
+      canIChangeDynamic : [], //是否可修改动态
       action : null,
-      dynamicList: [], //动态数据列表
-      commentList: [], //评论列表
+      dynamicList : [], //动态数据列表
+      dynamicCommentList : [{
+    "id": 65,
+    "content": "555",
+    "petName": "ZDSJdeJT",
+    "createTime": "03:23:05",
+    "postUserId": 4181153010,
+    "tagsCount": null,
+    "cCommentsCount": 0,
+    "postUserHeadPortraitUri": null,
+    "userHasTags": false,
+    "comments": []
+  }] //动态评论列表
     };
   },
   created() {
@@ -75,13 +141,11 @@ export default {
           params : this.queryDynamicInfo
         })
         .then(response => {
-          if (response.status == 200) {
-            this.dynamicList = response.data;
-            this.init();
-            for (let i = 0; i < this.dynamicList.length; i++) {
-              this.getCommentList(i);
+          if (response.status == 200) {       
+            for (let i = 0; i < response.data.length; i++) {
+              this.dynamicList.push(response.data[i]);
             }
-            console.log("commentList:" + this.commentList);
+            this.init();
           }
         })
         .catch(error => {
@@ -92,9 +156,14 @@ export default {
     init() { //初始化
     for (let i = 0; i < this.dynamicList.length; i++) {
       if (this.dynamicList[i].content.length > 250) { //内容过长
-      this.isContentTooLong.push(true);
+      this.isDynamicContentTooLong.push(true);
       } else { //内容不过长
-      this.isContentTooLong.push(false);
+      this.isDynamicContentTooLong.push(false);
+      }
+      if (this.dynamicList[i].postUserId == this.getStuId()) {
+        this.canIChangeDynamic.push(true);
+      } else {
+        this.canIChangeDynamic.push(false);
       }
     }
     },
@@ -109,8 +178,12 @@ export default {
         })
         .then(response => {
           if (response.status == 200) {
-            var comment = response.data;
-            this.commentList.push(comment);
+            var list = [];
+            for (let i = 0; i < response.data.length; i++) {
+              list.push(response.data[i]);
+            }
+            list["index"] = index;
+            this.dynamicCommentList.push(list);
           }
         })
         .catch(error => {
@@ -158,12 +231,12 @@ export default {
     },
 
     viewDynamicContentDetails(index) { //查看动态内容详情
-    var dynamicContent = document.getElementById('dynamicContent' +index); 
+    var dynamicContent = document.getElementById('dynamicContent' + index); 
     dynamicContent.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + this.dynamicList[index].content + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; 
     },
 
     cancelViewDynamicContentDetails(index) { //取消查看动态内容详情
-    var dynamicContent = document.getElementById('dynamicContent' +index); 
+    var dynamicContent = document.getElementById('dynamicContent' + index); 
     dynamicContent.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + this.dynamicList[index].content.substr(0,250) + "......" + "&nbsp;&nbsp;"; 
     },
 
@@ -175,12 +248,53 @@ export default {
     }
     },
 
-    spliceContentId : function(index){ //拼接Id
-    return "dynamicContent" + index;
+    spliceId : function(str, index){ //拼接Id
+    return str + index;
     },
 
     getStuId() {
     return this.$store.getters.account ? this.$store.getters.account.login : '';
+    },
+
+    viewComments(index) {
+      if (this.dynamicList[index].commentsCount != 0) { //评论数不为0时   
+        var dynamicComment = document.getElementById('dynamicComment' + index); 
+        if (dynamicComment.hidden == true) { //展开评论
+          this.getCommentList(index);
+        } else { //合起评论
+        for (let i = 0; i < this.dynamicCommentList.length; i++) {
+        if (this.dynamicCommentList[i].index == index) {
+          this.dynamicCommentList.splice(i, 1);
+          break;
+        }
+      }
+        }
+        dynamicComment.hidden = !dynamicComment.hidden; 
+        console.log(this.dynamicCommentList)
+      }
+    },
+
+    doesDynamicCommentExist(index) {
+      var res = false;
+      debugger
+      for (let i = 0; i < this.dynamicCommentList.length; i++) {
+        if (this.dynamicCommentList[i].index == index) {
+          res = true;
+          break;
+        }
+      }
+      return res;
+    },
+
+    getIndexOfDynamicCommentList(index) {
+      var res = -1;
+      for (let i = 0; i < this.dynamicCommentList.length; i++) {
+        if (this.dynamicCommentList[i].index == index) {
+          res = i;
+          break;
+        }
+      }
+      return res;
     }
   },
 };

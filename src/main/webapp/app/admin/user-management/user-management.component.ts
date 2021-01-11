@@ -3,6 +3,7 @@ import { mixins } from 'vue-class-component';
 import Vue2Filters from 'vue2-filters';
 import UserManagementService from './user-management.service';
 import AlertMixin from '@/shared/alert/alert.mixin';
+import App from '@/app.component';
 
 @Component({
   mixins: [Vue2Filters.mixin],
