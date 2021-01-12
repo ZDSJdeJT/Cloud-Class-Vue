@@ -8,6 +8,7 @@ const ChangePassword = () => import('@/account/change-password/change-password.v
 const Settings = () => import('@/account/settings/settings.vue');
 const First = () => import('@/core/first/first.vue'); //主页
 const TaskDetail = () => import('@/core/task/task.vue'); //作业详情页
+const TaskList = () => import('@/core/task/TaskList.vue');
 
 export default [
   /*   {
@@ -52,6 +53,12 @@ export default [
     path: '/info/task/detail/:taskId',
     name: 'TaskDetail',
     component: TaskDetail,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/info/task',
+    name: 'TaskList',
+    component: TaskList,
     meta: { authorities: [Authority.USER] },
   },
 ];

@@ -31,6 +31,12 @@
             <span v-text="$t('global.menu.home')">Home</span>
           </span>
         </b-nav-item>
+        <b-nav-item to="/info/task" exact v-if="authenticated && !getFirstLogin()">
+          <span>
+            <font-awesome-icon icon="book" />
+            <span>作业</span>
+          </span>
+        </b-nav-item>
         <!--                <b-nav-item-dropdown
                     right
                     id="entity-menu"
