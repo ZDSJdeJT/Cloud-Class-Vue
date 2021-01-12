@@ -26,6 +26,7 @@ import '../content/scss/vendor.scss';
 import AlertService from '@/shared/alert/alert.service';
 import TranslationService from '@/locale/translation.service';
 import ConfigurationService from '@/admin/configuration/configuration.service';
+import { Button } from 'ant-design-vue';
 
 //导入第三方UI组件
 import ant from 'ant-design-vue';
@@ -33,7 +34,7 @@ import 'ant-design-vue/dist/antd.css';
 import FormModel from 'ant-design-vue';
 Vue.use(ant);
 Vue.use(FormModel);
-
+Vue.use(Button);
 /* tslint:disable */
 
 // jhipster-needle-add-entity-service-to-main-import - JHipster will import entities services here
@@ -48,6 +49,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('jhi-item-count', JhiItemCountComponent);
 Vue.component('jhi-sort-indicator', JhiSortIndicatorComponent);
 Vue.component('infinite-loading', InfiniteLoading);
+Vue.component('a-botton', Button);
 
 const i18n = config.initI18N(Vue);
 const store = config.initVueXStore(Vue);

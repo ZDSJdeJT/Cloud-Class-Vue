@@ -28,6 +28,8 @@ export default class AccountService {
         .then(response => {
           this.store.commit('authenticate');
           const account = response.data;
+          sessionStorage.setItem('userHeadPort', account.imageUrl);
+          sessionStorage.setItem('userID', account.login);
           if (account) {
             this.store.commit('authenticated', account);
             if (this.store.getters.currentLanguage !== account.langKey) {

@@ -49,7 +49,7 @@ export default [
     meta: { authorities: [Authority.USER] },
   },
   {
-    path: '/info/task/detail',
+    path: '/info/task/detail/:taskId',
     name: 'TaskDetail',
     component: TaskDetail,
     meta: { authorities: [Authority.USER] },
