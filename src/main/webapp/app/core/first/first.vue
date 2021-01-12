@@ -2,8 +2,10 @@
   <div>
     <!--动态列表div-->
     <h2 v-text="$t('first.title')"></h2>
-    <a-button type="primary" @click="showModal" v-text="$t('first.releaseDynamic')" style="position: absolute; top: 1.3rem; left: 88%;">
-    </a-button>
+    <a-affix :offset-top="20"
+      ><a-button type="primary" @click="showModal" v-text="$t('first.releaseDynamic')" style="position: absolute; top: 1.3rem; left: 88%;">
+      </a-button
+    ></a-affix>
     <collection-create-form ref="collectionForm" :visible="visible" @cancel="handleCancel" @create="handleCreate" />
     <a-list class="comment-list" item-layout="horizontal" :data-source="this.dynamicList">
       <a-list-item slot="renderItem" slot-scope="item, index">
@@ -23,7 +25,12 @@
               }}
             </span>
             <span>&nbsp;&nbsp;&nbsp;回复</span>
-            <span v-if="getDynamicDeletePower(index)">&nbsp;&nbsp;&nbsp;<font color="red" @click="deleteDynamic(index)">删除</font></span>
+            <span v-if="getDynamicDeletePower(index)"
+              >&nbsp;&nbsp;&nbsp;
+              <a-popconfirm title="确定删除吗？" ok-text="确定" cancel-text="取消" @confirm="deleteDynamic(index)">
+                <a href="#" style="color: #ff0000;">删除</a>
+              </a-popconfirm></span
+            >
           </template>
           <p slot="content">
             <a :id="spliceId('dynamicContent', index)" class="dynamicStyle">{{ showPartOfDynamicContent(index) }}&nbsp;&nbsp;</a
@@ -40,9 +47,9 @@
           </a-tooltip>
           <div :id="spliceId('dynamicComment', index)" hidden>
             <div :v-if="false">
-              <a-comment :v-for="commentOfDynamic in dynamicCommentList[getIndexOfDynamicCommentList(index)]" :key="commentOfDynamic.id">
-                <!--评论-->
-                <span slot="actions">
+              <!--               <a-comment :v-for="commentOfDynamic in dynamicCommentList[getIndexOfDynamicCommentList(index)]" :key="commentOfDynamic.id"> -->
+              <!--评论-->
+              <!--                 <span slot="actions">
                   <span key="comment-basic-like">
                     <a-tooltip title="点赞">
                       <a-icon type="like" :theme="action === 'liked' ? 'filled' : 'outlined'" />
@@ -84,7 +91,7 @@
                     <span>时间</span>
                   </a-tooltip>
                 </a-comment>
-              </a-comment>
+              </a-comment> -->
             </div>
           </div>
         </a-comment>
@@ -153,6 +160,7 @@ export default {
       dynamicList: [], //动态数据列表
       dynamicCommentList : [], //动态评论列表
       visible: false,
+      taskList: [], //作业列表
     };
   },
   components:{
@@ -160,12 +168,11 @@ export default {
   },
   created() {
     this.getDynamicList();
+    this.getTask();
   },
   mounted() {
-      /**
-       * 监听窗口的高度
-       */
-      window.addEventListener('scroll',this.handleScroll,true);
+      //监听窗口的高度  
+      window.addEventListener('scroll', this.handleScroll, true);
   },
   methods: {
     getDynamicList() { //获取动态列表
@@ -212,6 +219,26 @@ export default {
             }
             list["index"] = index;
             this.dynamicCommentList.push(list);
+          }
+        })
+        .catch(error => {
+          console.log(error); //控制台打印异常
+        });
+    },
+
+    getTask() {
+      axios
+        .get('api/message/getTask', {
+          params : {
+            stuID : this.getStuId()
+          }
+        })
+        .then(response => {
+          if (response.status == 200 && typeof response.data != "undefined") {
+            for (let i = 0; i < response.data.length; i++) {
+              this.taskList.push(response.data[i]);
+              this.openNotification(response.data[i]);
+            }
           }
         })
         .catch(error => {
@@ -304,7 +331,6 @@ export default {
 
     doesDynamicCommentExist(index) {
       var res = false;
-      debugger
       for (let i = 0; i < this.dynamicCommentList.length; i++) {
         if (this.dynamicCommentList[i].index == index) {
           res = true;
@@ -338,8 +364,7 @@ export default {
       form.validateFields((err, values) => {
         if (err) {
           return;
-        }
-        console.log('Received values of form: ', values);       
+        }      
         this.releaseDynamic(values.contentOfReleaseDynamic);
         form.resetFields();
         this.visible = false;
@@ -401,15 +426,47 @@ export default {
 
     //滚动条滚到底部加载的方法
     handleScroll(){
-let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-let clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
-let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-      if (scrollHeight > clientHeight && scrollTop + clientHeight === scrollHeight){
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      let clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+      let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+      if (Math.ceil(scrollTop + clientHeight)== parseInt(scrollHeight)){
         //滚动条到底部的条件
           this.queryDynamicInfo.page++;
           this.getDynamicList();
-     
       }
+    },
+
+    showPart(str) { //展示部分动态内容（如果内容过长）
+    if (str.length > 100) { //内容过长
+    return str.substr(0,100) + "......";
+    } else { //内容不过长
+    return str;
+    }
+    },
+
+    openNotification(obj) {
+      const key = `open${Date.now()}`;
+      this.$notification.open({
+        top: '150px',
+        duration: 0,
+        message: this.showPart(obj.title),
+        description: this.showPart(obj.content),
+        btn: h => {
+          return h(
+            'a-button',
+            {
+              props: {
+                type: 'primary',
+                size: 'small',
+              },
+              on: {
+                click: () => this.$router.push({name:'TaskDetail',params:{task: obj}}),
+              },
+            },
+            '查看详情',
+          );
+        },
+      });
     },
   },
 };
