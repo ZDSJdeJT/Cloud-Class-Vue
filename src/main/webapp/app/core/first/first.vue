@@ -40,28 +40,27 @@
           </a-tooltip>
           <div :id="spliceId('dynamicComment', index)" hidden>
             <div :v-if="false">
-              <!-- <a-comment :v-for="commentOfDynamic in dynamicCommentList[0]" :key="commentOfDynamic.id"> -->
-              <a-comment>
+              <a-comment :v-for="commentOfDynamic in dynamicCommentList[getIndexOfDynamicCommentList(index)]" :key="commentOfDynamic.id">
                 <!--评论-->
                 <span slot="actions">
                   <span key="comment-basic-like">
                     <a-tooltip title="点赞">
                       <a-icon type="like" :theme="action === 'liked' ? 'filled' : 'outlined'" />
                     </a-tooltip>
-                    <span style="padding-left: '8px'; cursor: 'auto';"> 死数据&nbsp;&nbsp;&nbsp;&nbsp; </span>
+                    <span style="padding-left: '8px'; cursor: 'auto';"> {{ commentOfDynamic.tagsCount }}&nbsp;&nbsp;&nbsp;&nbsp; </span>
                   </span>
                   <span slot="actions">回复</span>
                   <span>&nbsp;&nbsp;&nbsp;<font color="red">删除</font></span>
                 </span>
-                <a slot="author">commentOfDynamic.petName</a>
+                <a slot="author">{{ commentOfDynamic.petName }}</a>
                 <a-avatar slot="avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" alt="Han Solo" />
                 <p slot="content">
                   <a class="dynamicStyle"
-                    >We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure).</a
+                    >{{ commentOfDynamic.content }}</a
                   >
                 </p>
                 <a-tooltip slot="datetime">
-                  <span>时间</span>
+                  <span>{{ commentOfDynamic.createTime }}</span>
                 </a-tooltip>
                 <a-comment>
                   <span slot="actions">
@@ -161,6 +160,12 @@ export default {
   },
   created() {
     this.getDynamicList();
+  },
+  mounted() {
+      /**
+       * 监听窗口的高度
+       */
+      window.addEventListener('scroll',this.handleScroll,true);
   },
   methods: {
     getDynamicList() { //获取动态列表
@@ -341,16 +346,18 @@ export default {
       });
     },
 
-    releaseDynamic(contentOfReleaseDynamic) { //发布动态
-      var param = new URLSearchParams();
-      param.append('content',contentOfReleaseDynamic);
-      param.append('postUserId',this.getStuId());
-      var data = new  FormData();
-      data.append('content',contentOfReleaseDynamic);
-        axios.post('api/message/addDynamic',param
+    releaseDynamic(contentOfReleaseDynamic) {
+        axios.post('api/message/addDynamic',
+        contentOfReleaseDynamic,
+        {
+          headers: {
+            'Content-Type': 'application/json' 
+        },
+          params:{postUserId:this.getStuId()}
+        }
           )
           .then(function (response) {
-            console.log(response);
+            location.reload(); //刷新本页面
           })
           .catch(function (error) {
             console.log(error);
@@ -390,6 +397,19 @@ export default {
       this.$message.success(
         '删除成功！',
       );
+    },
+
+    //滚动条滚到底部加载的方法
+    handleScroll(){
+let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+let clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+      if (scrollHeight > clientHeight && scrollTop + clientHeight === scrollHeight){
+        //滚动条到底部的条件
+          this.queryDynamicInfo.page++;
+          this.getDynamicList();
+     
+      }
     },
   },
 };
