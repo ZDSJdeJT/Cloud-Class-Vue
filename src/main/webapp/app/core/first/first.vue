@@ -23,8 +23,7 @@
               }}
             </span>
             <span>&nbsp;&nbsp;&nbsp;回复</span>
-            <span v-if="canIChangeDynamic[index]">&nbsp;&nbsp;&nbsp;修改</span>
-            <span>&nbsp;&nbsp;&nbsp;<font color="red">删除</font></span>
+            <span v-if="getDynamicDeletePower(index)">&nbsp;&nbsp;&nbsp;<font color="red" @click="deleteDynamic(index)">删除</font></span>
           </template>
           <p slot="content">
             <a :id="spliceId('dynamicContent', index)" class="dynamicStyle">{{ showPartOfDynamicContent(index) }}&nbsp;&nbsp;</a
@@ -52,7 +51,6 @@
                     <span style="padding-left: '8px'; cursor: 'auto';"> 死数据&nbsp;&nbsp;&nbsp;&nbsp; </span>
                   </span>
                   <span slot="actions">回复</span>
-                  <span>&nbsp;&nbsp;&nbsp;修改</span>
                   <span>&nbsp;&nbsp;&nbsp;<font color="red">删除</font></span>
                 </span>
                 <a slot="author">commentOfDynamic.petName</a>
@@ -74,7 +72,6 @@
                       <span style="padding-left: '8px'; cursor: 'auto';"> 死数据&nbsp;&nbsp;&nbsp;&nbsp; </span>
                     </span>
                     <span slot="actions">回复</span>
-                    <span>&nbsp;&nbsp;&nbsp;修改</span>
                     <span>&nbsp;&nbsp;&nbsp;<font color="red">删除</font></span>
                   </span>
                   <a slot="author">Han Solo</a>
@@ -94,6 +91,10 @@
         </a-comment>
       </a-list-item>
     </a-list>
+    <div>
+      <a-back-top />
+      <strong style="color: rgba(64, 64, 64, 0.6);"></strong>
+    </div>
   </div>
 </template>
 
@@ -110,6 +111,7 @@ p {
 
 <script>
 import axios from 'axios';
+import navbar from '@/core/jhi-navbar/jhi-navbar.component'
 const CollectionCreateForm = {
   props: ['visible'],
   beforeCreate() {
@@ -144,13 +146,12 @@ export default {
   data() {
     return {
       queryDynamicInfo: {
-        page : 0,
-        stuID : this.getStuId()
+        page: 0,
+        stuID: this.getStuId()
       },
-      isDynamicContentTooLong : [], //动态内容是否过长
-      canIChangeDynamic : [], //是否可修改动态
-      action : null,
-      dynamicList : [], //动态数据列表
+      isDynamicContentTooLong: [], //动态内容是否过长
+      action: null,
+      dynamicList: [], //动态数据列表
       dynamicCommentList : [], //动态评论列表
       visible: false,
     };
@@ -186,11 +187,6 @@ export default {
       this.isDynamicContentTooLong.push(true);
       } else { //内容不过长
       this.isDynamicContentTooLong.push(false);
-      }
-      if (this.dynamicList[i].postUserId == this.getStuId()) {
-        this.canIChangeDynamic.push(true);
-      } else {
-        this.canIChangeDynamic.push(false);
       }
     }
     },
@@ -345,7 +341,7 @@ export default {
       });
     },
 
-    releaseDynamic(contentOfReleaseDynamic) {
+    releaseDynamic(contentOfReleaseDynamic) { //发布动态
       var param = new URLSearchParams();
       param.append('content',contentOfReleaseDynamic);
       param.append('postUserId',this.getStuId());
@@ -359,7 +355,42 @@ export default {
           .catch(function (error) {
             console.log(error);
           });
-    }
+    },
+
+    deleteDynamic(index) {
+      axios
+        .get('api/message/falseDeleteMs', {
+          params : {
+            id : this.dynamicList[index].id,
+          }
+        })
+        .then(response => {
+          if (response.status == 200) {
+            console.log("删除动态成功！");
+            this.dynamicList.splice(index, 1);
+            this.success();
+          }
+        })
+        .catch(error => {
+          console.log(error); //控制台打印异常
+        });
+    },
+
+    getDynamicDeletePower(index) {
+      if (this.dynamicList[index].postUserId == this.getStuId()) {
+        return true;
+      } else if (navbar.getauthenticated && navbar.hasAnyAuthority('ROLE_ADMIN')) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
+    success() {
+      this.$message.success(
+        '删除成功！',
+      );
+    },
   },
 };
 </script>
