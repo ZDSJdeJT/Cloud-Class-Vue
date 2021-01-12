@@ -466,6 +466,7 @@ export default {
           params: { postUserId: this.getStuId() },
         })
         .then(function (response) {
+          console.log(this.dynamicList);
           location.reload(); //刷新本页面
         })
         .catch(function (error) {

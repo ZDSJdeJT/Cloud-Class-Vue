@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <h2 v-text="$t('task.title')"></h2>
-    <a-avatar shape="square" size="large" :src="taskData.postUserHeadPortraitUri" /><a>&nbsp;&nbsp;{{ taskData.petName }}</a>
-    <h4>{{ taskData.title }}</h4>
-    <h5>{{ taskData.content }}</h5>
-    <h5>
-      {{ timeFormatConversion(taskData.createTime) }} ---- <font color="#FF0000">{{ timeFormatConversion(taskData.cutTime) }}</font>
-    </h5>
-    <br /><br /><br /><br />
-    <input type="file" id="fileExport" @change="handleFileChange" ref="inputer" />
-    <button @click="upload()">上传</button>
-  </div>
+  <a-card hoverable style="width: 900px">
+    <template slot="actions" class="ant-card-actions">
+      <input type="file" id="fileExport" @change="handleFileChange" ref="inputer" />
+      <a-icon key="upload" type="upload" @click="upload()"/>
+    </template>
+    <a-card-meta :title=taskData.title :description=text+timeFormatConversion(taskData.cutTime)>
+      <a-avatar
+        slot="avatar"
+        :src=taskData.postUserHeadPortraitUri />
+    </a-card-meta>
+    {{taskData.content}}
+  </a-card>
 </template>
 <script>
 import axios from "axios";
@@ -20,7 +20,8 @@ export default {
       id: null,
       taskData: {"postUserHeadPortraitUri": ""},
       file: null,
-      formData: null
+      formData: null,
+      text:"截至时间："
     };
   },
   created() {
