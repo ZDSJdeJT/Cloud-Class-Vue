@@ -110,6 +110,7 @@ p {
 
 <script>
 import axios from 'axios';
+import qs from 'qs'
 const CollectionCreateForm = {
   props: ['visible'],
   beforeCreate() {
@@ -141,6 +142,7 @@ const CollectionCreateForm = {
   `,
 };
 export default {
+
   data() {
     return {
       queryDynamicInfo: {
@@ -346,12 +348,14 @@ export default {
     },
 
     releaseDynamic(contentOfReleaseDynamic) {
-      var param = new URLSearchParams();
-      param.append('content',contentOfReleaseDynamic);
-      param.append('postUserId',this.getStuId());
-      var data = new  FormData();
-      data.append('content',contentOfReleaseDynamic);
-        axios.post('api/message/addDynamic',param
+        axios.post('api/message/addDynamic',
+        contentOfReleaseDynamic,
+        {
+          headers: {
+      'Content-Type': 'application/json' 
+    },
+          params:{  postUserId:this.getStuId()}
+        }
           )
           .then(function (response) {
             console.log(response);
