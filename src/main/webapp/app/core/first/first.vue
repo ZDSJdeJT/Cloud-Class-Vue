@@ -22,7 +22,6 @@
                 item.commentsCount
               }}
             </span>
-            <span>&nbsp;&nbsp;&nbsp;回复</span>
             <span v-if="canIChangeDynamic[index]">&nbsp;&nbsp;&nbsp;修改</span>
             <span>&nbsp;&nbsp;&nbsp;<font color="red">删除</font></span>
           </template>
@@ -40,10 +39,12 @@
             <span>{{ calculationTimeDifference(item.createTime) }}</span>
           </a-tooltip>
           <div :id="spliceId('dynamicComment', index)" hidden>
-            <div :v-if="false">
-              <!-- <a-comment :v-for="commentOfDynamic in dynamicCommentList[0]" :key="commentOfDynamic.id"> -->
-              <a-comment>
-                <!--评论-->
+            <div>
+                <a-avatar slot="avatar" class="space-align-block" align="start" :src="userHeadPort" />
+                <a-textarea placeholder="发条友善的评论" class="space-align-container" align="center" allow-clear v-model="commentDynamicText"/>
+                <a-botton type="primary" class="space-align-block" align="end" shape="circle" icon="export" @click="commentDynamic(item.id)"></a-botton>
+              <a-comment v-for="commentOfDynamic in dynamicCommentList" :key="commentOfDynamic.id">
+                <!--评论-->{{commentOfDynamic}}
                 <span slot="actions">
                   <span key="comment-basic-like">
                     <a-tooltip title="点赞">
@@ -89,6 +90,7 @@
                   </a-tooltip>
                 </a-comment>
               </a-comment>
+
             </div>
           </div>
         </a-comment>
@@ -110,7 +112,7 @@ p {
 
 <script>
 import axios from 'axios';
-import qs from 'qs'
+
 const CollectionCreateForm = {
   props: ['visible'],
   beforeCreate() {
@@ -155,6 +157,9 @@ export default {
       dynamicList : [], //动态数据列表
       dynamicCommentList : [], //动态评论列表
       visible: false,
+      userHeadPort:sessionStorage.getItem('userHeadPort'),
+      userID:sessionStorage.getItem('userID'),
+      commentDynamicText:null
     };
   },
   components:{
@@ -162,8 +167,10 @@ export default {
   },
   created() {
     this.getDynamicList();
+    console.log(sessionStorage.getItem('user'));
   },
   methods: {
+   
     getDynamicList() { //获取动态列表
       axios
         .get('api/message/getDynamic', {
@@ -286,21 +293,23 @@ export default {
     },
 
     viewComments(index) {
+      var dynamicComment = document.getElementById('dynamicComment' + index); 
       if (this.dynamicList[index].commentsCount != 0) { //评论数不为0时   
-        var dynamicComment = document.getElementById('dynamicComment' + index); 
+         
         if (dynamicComment.hidden == true) { //展开评论
           this.getCommentList(index);
         } else { //合起评论
-        for (let i = 0; i < this.dynamicCommentList.length; i++) {
-        if (this.dynamicCommentList[i].index == index) {
-          this.dynamicCommentList.splice(i, 1);
-          break;
+          for (let i = 0; i < this.dynamicCommentList.length; i++) {
+            if (this.dynamicCommentList[i].index == index) {
+              this.dynamicCommentList.splice(i, 1);
+              break;
+            }
         }
+        }
+      
       }
-        }
         dynamicComment.hidden = !dynamicComment.hidden; 
         console.log(this.dynamicCommentList)
-      }
     },
 
     doesDynamicCommentExist(index) {
@@ -325,6 +334,25 @@ export default {
       }
       return res;
     },
+   commentDynamic(dyID,index){
+     console.log(this.commentDynamicText);
+         axios.post('api/message/addComment',
+        this.commentDynamicText,
+        {
+          headers: {'Content-Type': 'application/json' },
+          params:{  
+            postUserId:this.getStuId(),
+            msID:dyID
+          }
+        }
+          )
+          .then(function (response) {
+            this.getCommentList(index);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+   },
 
     showModal() {
       this.visible = true;
