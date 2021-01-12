@@ -66,6 +66,7 @@ export default {
     },
 
     upload() {
+      var vue= this;
       if (this.formData != null) {
               axios
         .post("/api/message/upTask", this.formData, {
@@ -78,6 +79,10 @@ export default {
         })
         .then(function (response) {
           console.log(response);
+          vue.$message.success(
+        '上传成功',
+        4,
+      );
         })
         .catch(function (error) {
           console.log(error);
