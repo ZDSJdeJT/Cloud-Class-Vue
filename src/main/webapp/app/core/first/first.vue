@@ -418,7 +418,7 @@ export default {
       }
       return res;
     },
-    
+
     commentDynamic(dyID, index) {
       console.log(this.commentDynamicText);
       axios
@@ -458,6 +458,7 @@ export default {
     },
 
     releaseDynamic(contentOfReleaseDynamic) {
+      var vue = this;
       axios
         .post("api/message/addDynamic", contentOfReleaseDynamic, {
           headers: {
@@ -466,8 +467,28 @@ export default {
           params: { postUserId: this.getStuId() },
         })
         .then(function (response) {
-          console.log(this.dynamicList);
-          location.reload(); //刷新本页面
+          vue.dynamicList.length = 0;
+          vue.isDynamicContentTooLong.length = 0;
+          for (let i = 0; i < vue.queryDynamicInfo.page + 1; i++) {
+                  axios
+        .get("api/message/getDynamic", {
+          params: {
+            stuID: vue.getStuId(),
+            page: i
+          }
+        })
+        .then((response) => {
+          if (response.status == 200) {
+            for (let i = 0; i < response.data.length; i++) {
+              vue.dynamicList.push(response.data[i]);
+            }
+            vue.init();
+          }
+        })
+        .catch((error) => {
+          console.log(error); //控制台打印异常
+        });
+          }
         })
         .catch(function (error) {
           console.log(error);
